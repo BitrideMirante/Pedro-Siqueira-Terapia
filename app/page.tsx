@@ -1,6 +1,7 @@
 import { lerStatus } from "@/lib/kv";
 import { Waves } from "@/components/Waves";
 import { QrCode } from "@/components/QrCode";
+import { Galeria } from "@/components/Galeria";
 
 export const dynamic = "force-dynamic"; // sempre busca o status mais recente
 
@@ -91,6 +92,13 @@ export default async function Home() {
               <p style={{ fontSize: 14, margin: "5px 0 0", opacity: 0.86 }}>Quer garantir um horário? Chame no WhatsApp.</p>
             </div>
           </div>
+        </div>
+
+        {/* PAINEL 2.5 · galeria de atendimentos */}
+        <div className="panel" style={{ minHeight: "calc(100dvh - 96px)", display: "flex", flexDirection: "column", justifyContent: "center", padding: "26px 0" }}>
+          <div style={{ fontFamily: "'IBM Plex Mono',monospace", fontSize: 10.5, letterSpacing: ".18em", textTransform: "uppercase", color: "#8FE3CC", marginBottom: 4 }}>Atendimentos</div>
+          <p style={{ fontSize: 14.5, opacity: 0.86, margin: "0 0 16px", maxWidth: "32ch" }}>Alguns registros do trabalho em Rolante — na natureza e no consultório Alba.</p>
+          <Galeria />
         </div>
 
         {/* PAINEL 3 · sobre + pra quem */}

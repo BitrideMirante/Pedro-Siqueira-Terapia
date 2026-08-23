@@ -29,6 +29,12 @@ a:hover {
 .snap::-webkit-scrollbar {
   display: none;
 }
+.galeria-scroll {
+  scrollbar-width: none;
+}
+.galeria-scroll::-webkit-scrollbar {
+  display: none;
+}
 .panel {
   scroll-snap-align: start;
 }
