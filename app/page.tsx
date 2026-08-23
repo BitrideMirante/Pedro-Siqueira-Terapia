@@ -1,12 +1,10 @@
 import { lerStatus } from "@/lib/kv";
 import { Waves } from "@/components/Waves";
-import { QrCode } from "@/components/QrCode";
 import { Galeria } from "@/components/Galeria";
 
 export const dynamic = "force-dynamic"; // sempre busca o status mais recente
 
 const WHATSAPP = (process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "5551980602183").replace(/\D/g, "");
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://pedrosiqueira.com.br";
 const TIKTOK_ATIVO = process.env.NEXT_PUBLIC_TIKTOK_ATIVO === "true";
 const TIKTOK_LINK = process.env.NEXT_PUBLIC_TIKTOK_LINK || "https://tiktok.com/@...";
 
@@ -128,10 +126,10 @@ export default async function Home() {
 
         {/* PAINEL 4 · contato */}
         <div className="panel" style={{ minHeight: "calc(100dvh - 96px)", display: "flex", flexDirection: "column", justifyContent: "center", padding: "26px 0" }}>
-          <div style={{ background: "rgba(10,32,36,.5)", backdropFilter: "blur(22px)", WebkitBackdropFilter: "blur(22px)", border: "1px solid rgba(143,227,204,.26)", borderRadius: 24, padding: 22, display: "flex", flexDirection: "column", alignItems: "center", gap: 16, boxShadow: "0 18px 50px rgba(3,12,18,.45)" }}>
+          <div style={{ background: "rgba(10,32,36,.5)", backdropFilter: "blur(22px)", WebkitBackdropFilter: "blur(22px)", border: "1px solid rgba(143,227,204,.26)", borderRadius: 24, padding: 26, display: "flex", flexDirection: "column", alignItems: "center", gap: 18, boxShadow: "0 18px 50px rgba(3,12,18,.45)" }}>
             <div style={{ fontFamily: "'Big Shoulders Display',sans-serif", fontWeight: 800, textTransform: "uppercase", fontSize: 34, lineHeight: 0.92, textAlign: "center" }}>Fale comigo</div>
-            <QrCode url={SITE_URL} />
-            <small style={{ fontFamily: "'IBM Plex Mono',monospace", fontSize: 10.5, color: "#D3B79A", textAlign: "center" }}>Aponte a câmera pra chegar direto aqui</small>
+            <p style={{ fontSize: 15, opacity: 0.88, textAlign: "center", margin: 0, maxWidth: "26ch" }}>Chame no WhatsApp e combine seu atendimento em Guriú.</p>
+            <a href={waUrl} target="_blank" rel="noreferrer" style={{ display: "flex", alignItems: "center", justifyContent: "center", minHeight: 52, padding: "14px 28px", borderRadius: 16, background: "#6FE0C0", color: "#062018", fontWeight: 600, fontSize: 15.5 }}>Chamar no WhatsApp</a>
             <p style={{ fontFamily: "'IBM Plex Mono',monospace", fontSize: 10, color: "#B58A69", letterSpacing: ".06em", margin: "4px 0 0", textAlign: "center" }}>PEDRO SIQUEIRA · TERAPEUTA MANUAL · GURIÚ, CE</p>
           </div>
         </div>
