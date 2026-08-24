@@ -1,6 +1,7 @@
 import { lerStatus } from "@/lib/kv";
 import { Waves } from "@/components/Waves";
 import { Galeria } from "@/components/Galeria";
+import { BarraAcao } from "@/components/BarraAcao";
 
 export const dynamic = "force-dynamic"; // sempre busca o status mais recente
 
@@ -28,7 +29,7 @@ export default async function Home() {
           <div style={{ position: "absolute", inset: 0, overflow: "hidden" }}>
             <img src="/hero/massagem-praia.jpg" alt="" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "60% 35%" }} />
             <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 150, background: "linear-gradient(180deg, rgba(61,46,34,.55) 0%, rgba(61,46,34,0) 100%)" }} />
-            <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "58%", background: "linear-gradient(180deg, rgba(243,233,218,0) 0%, rgba(232,206,171,.55) 28%, rgba(243,233,218,.95) 70%, #F3E9DA 100%)" }} />
+            <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "72%", background: "linear-gradient(180deg, rgba(61,46,34,0) 0%, rgba(61,46,34,.4) 22%, rgba(232,206,171,.75) 42%, rgba(243,233,218,.97) 68%, #F3E9DA 100%)" }} />
           </div>
 
           <div style={{ position: "relative", zIndex: 2, padding: "calc(20px + env(safe-area-inset-top)) 18px 0", display: "flex", alignItems: "center", justifyContent: "space-between", gap: 10 }}>
@@ -42,16 +43,16 @@ export default async function Home() {
           </div>
 
           <div style={{ position: "relative", zIndex: 2, marginTop: "auto", padding: "0 18px 18px", color: "#3D2E22" }}>
-            <div style={{ fontFamily: "'Big Shoulders Display',sans-serif", fontWeight: 900, textTransform: "uppercase", lineHeight: 0.92, fontSize: "clamp(30px,9cqw,36px)", marginBottom: 6 }}>
+            <div style={{ fontFamily: "'Big Shoulders Display',sans-serif", fontWeight: 900, textTransform: "uppercase", lineHeight: 0.92, fontSize: "clamp(30px,9cqw,36px)", marginBottom: 6, textShadow: "0 2px 18px rgba(243,233,218,.9), 0 1px 3px rgba(243,233,218,.9)" }}>
               Massagem &amp; recovery<br />na praia
             </div>
 
             {status.ativo ? (
-              <p style={{ fontSize: 14.5, opacity: 0.85, margin: "0 0 16px", maxWidth: "30ch", color: "#5C4632" }}>
+              <p style={{ fontSize: 14.5, opacity: 0.85, margin: "0 0 16px", maxWidth: "30ch", color: "#5C4632", textShadow: "0 1px 12px rgba(243,233,218,.9)" }}>
                 Hoje em <strong>{status.local || "local a confirmar"}</strong>{status.horario ? ` · ${status.horario}` : ""}. Encontrou por aqui ou combine antes — o corpo agradece.
               </p>
             ) : (
-              <p style={{ fontSize: 14.5, opacity: 0.85, margin: "0 0 16px", maxWidth: "30ch", color: "#5C4632" }}>
+              <p style={{ fontSize: 14.5, opacity: 0.85, margin: "0 0 16px", maxWidth: "30ch", color: "#5C4632", textShadow: "0 1px 12px rgba(243,233,218,.9)" }}>
                 Hoje sem ponto fixo — chame no WhatsApp e combine. O corpo agradece.
               </p>
             )}
@@ -72,7 +73,14 @@ export default async function Home() {
           </div>
         </div>
 
-        {/* PAINEL 2 · serviços + como funciona */}
+        {/* PAINEL 2 · galeria de atendimentos */}
+        <div className="panel" style={{ minHeight: "calc(100dvh - 96px)", display: "flex", flexDirection: "column", justifyContent: "center", padding: "26px 0" }}>
+          <div style={{ fontFamily: "'IBM Plex Mono',monospace", fontSize: 10.5, letterSpacing: ".18em", textTransform: "uppercase", color: "#C97B3D", marginBottom: 4 }}>Atendimentos</div>
+          <p style={{ fontSize: 14, opacity: 0.86, margin: "0 0 16px", maxWidth: "32ch", color: "#5C4632" }}>Rolante, na natureza e no consultório Alba.</p>
+          <Galeria />
+        </div>
+
+        {/* PAINEL 3 · serviços + como funciona */}
         <div className="panel" style={{ minHeight: "calc(100dvh - 96px)", display: "flex", flexDirection: "column", justifyContent: "center", gap: 12, padding: "26px 0" }}>
           <div style={{ fontFamily: "'IBM Plex Mono',monospace", fontSize: 10.5, letterSpacing: ".18em", textTransform: "uppercase", color: "#C97B3D" }}>O que eu faço</div>
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10 }}>
@@ -101,14 +109,7 @@ export default async function Home() {
           </div>
         </div>
 
-        {/* PAINEL 2.5 · galeria de atendimentos */}
-        <div className="panel" style={{ minHeight: "calc(100dvh - 96px)", display: "flex", flexDirection: "column", justifyContent: "center", padding: "26px 0" }}>
-          <div style={{ fontFamily: "'IBM Plex Mono',monospace", fontSize: 10.5, letterSpacing: ".18em", textTransform: "uppercase", color: "#C97B3D", marginBottom: 4 }}>Atendimentos</div>
-          <p style={{ fontSize: 14.5, opacity: 0.86, margin: "0 0 16px", maxWidth: "32ch", color: "#5C4632" }}>Alguns registros do trabalho em Rolante — na natureza e no consultório Alba.</p>
-          <Galeria />
-        </div>
-
-        {/* PAINEL 3 · sobre + pra quem */}
+        {/* PAINEL 4 · sobre + pra quem */}
         <div className="panel" style={{ minHeight: "calc(100dvh - 96px)", display: "flex", flexDirection: "column", justifyContent: "center", padding: "26px 0" }}>
           <div style={{ fontFamily: "'IBM Plex Mono',monospace", fontSize: 10.5, letterSpacing: ".18em", textTransform: "uppercase", color: "#C97B3D", marginBottom: 14 }}>Quem atende</div>
           <div style={{ display: "flex", gap: 14, alignItems: "flex-start" }}>
@@ -133,8 +134,8 @@ export default async function Home() {
           </div>
         </div>
 
-        {/* PAINEL 4 · contato */}
-        <div className="panel" style={{ minHeight: "calc(100dvh - 96px)", display: "flex", flexDirection: "column", justifyContent: "center", padding: "26px 0" }}>
+        {/* PAINEL 5 · contato */}
+        <div id="contato" className="panel" style={{ minHeight: "calc(100dvh - 96px)", display: "flex", flexDirection: "column", justifyContent: "center", padding: "26px 0" }}>
           <div style={{ background: "rgba(255,250,242,.7)", backdropFilter: "blur(22px)", WebkitBackdropFilter: "blur(22px)", border: "1px solid rgba(201,123,61,.3)", borderRadius: 24, padding: 26, display: "flex", flexDirection: "column", alignItems: "center", gap: 18, boxShadow: "0 18px 50px rgba(61,40,20,.18)" }}>
             <div style={{ fontFamily: "'Big Shoulders Display',sans-serif", fontWeight: 800, textTransform: "uppercase", fontSize: 34, lineHeight: 0.92, textAlign: "center", color: "#3D2E22" }}>Fale comigo</div>
             <p style={{ fontSize: 15, opacity: 0.88, textAlign: "center", margin: 0, maxWidth: "26ch", color: "#5C4632" }}>Chame no WhatsApp e combine seu atendimento em Guriú.</p>
@@ -146,12 +147,7 @@ export default async function Home() {
       </div>
 
       {/* BARRA DE AÇÃO FIXA */}
-      <div style={{ position: "absolute", left: 0, right: 0, bottom: 0, zIndex: 5, padding: "12px 18px calc(12px + env(safe-area-inset-bottom))", background: "linear-gradient(180deg, rgba(243,233,218,0) 0%, rgba(243,233,218,.92) 45%)", backdropFilter: "blur(14px)", WebkitBackdropFilter: "blur(14px)" }}>
-        <div style={{ display: "grid", gridTemplateColumns: "1fr auto", gap: 9 }}>
-          <a href={waUrl} target="_blank" rel="noreferrer" style={{ display: "flex", alignItems: "center", justifyContent: "center", minHeight: 52, padding: "14px 18px", borderRadius: 16, background: "#C97B3D", color: "#FBF3E7", fontWeight: 600, fontSize: 15.5 }}>Chamar no WhatsApp</a>
-          <a href="#hoje" style={{ display: "flex", alignItems: "center", justifyContent: "center", minHeight: 52, padding: "14px 18px", borderRadius: 16, border: "1px solid rgba(61,46,34,.22)", color: "#3D2E22", fontFamily: "'IBM Plex Mono',monospace", fontSize: 11, letterSpacing: ".12em", textTransform: "uppercase" }}>Hoje</a>
-        </div>
-      </div>
+      <BarraAcao waUrl={waUrl} />
     </div>
   );
 }
