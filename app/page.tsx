@@ -43,28 +43,28 @@ export default async function Home() {
           </div>
 
           <div style={{ position: "relative", zIndex: 2, marginTop: "auto", padding: "0 18px 18px", color: "#3D2E22" }}>
-            <div style={{ fontFamily: "'Big Shoulders Display',sans-serif", fontWeight: 900, textTransform: "uppercase", lineHeight: 0.92, fontSize: "clamp(30px,9cqw,36px)", marginBottom: 6, textShadow: "0 2px 18px rgba(243,233,218,.9), 0 1px 3px rgba(243,233,218,.9)" }}>
+            <div style={{ fontFamily: "'Big Shoulders Display',sans-serif", fontWeight: 900, textTransform: "uppercase", lineHeight: 0.94, fontSize: "clamp(23px,6.4cqw,27px)", marginBottom: 6, textShadow: "0 2px 18px rgba(243,233,218,.9), 0 1px 3px rgba(243,233,218,.9)" }}>
               Massagem &amp; recovery<br />na praia
             </div>
 
             {status.ativo ? (
-              <p style={{ fontSize: 14.5, opacity: 0.85, margin: "0 0 16px", maxWidth: "30ch", color: "#5C4632", textShadow: "0 1px 12px rgba(243,233,218,.9)" }}>
+              <p style={{ fontSize: 14.5, opacity: 0.85, margin: "0 0 12px", maxWidth: "30ch", color: "#5C4632", textShadow: "0 1px 12px rgba(243,233,218,.9)" }}>
                 Hoje em <strong>{status.local || "local a confirmar"}</strong>{status.horario ? ` · ${status.horario}` : ""}. Encontrou por aqui ou combine antes — o corpo agradece.
               </p>
             ) : (
-              <p style={{ fontSize: 14.5, opacity: 0.85, margin: "0 0 16px", maxWidth: "30ch", color: "#5C4632", textShadow: "0 1px 12px rgba(243,233,218,.9)" }}>
+              <p style={{ fontSize: 14.5, opacity: 0.85, margin: "0 0 12px", maxWidth: "30ch", color: "#5C4632", textShadow: "0 1px 12px rgba(243,233,218,.9)" }}>
                 Hoje sem ponto fixo — chame no WhatsApp e combine. O corpo agradece.
               </p>
             )}
 
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 9, marginBottom: 14 }}>
-              <div style={{ background: "rgba(255,250,242,.7)", backdropFilter: "blur(16px)", WebkitBackdropFilter: "blur(16px)", border: "1px solid rgba(201,123,61,.35)", borderRadius: 16, padding: 14, textAlign: "center" }}>
-                <div style={{ fontFamily: "'Big Shoulders Display',sans-serif", fontWeight: 800, fontSize: 28, lineHeight: 1, color: "#3D2E22" }}>20 min</div>
-                <div style={{ fontSize: 11.5, opacity: 0.75, marginTop: 3, color: "#5C4632" }}>Alívio rápido</div>
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8, marginBottom: 12 }}>
+              <div style={{ background: "rgba(255,250,242,.7)", backdropFilter: "blur(16px)", WebkitBackdropFilter: "blur(16px)", border: "1px solid rgba(201,123,61,.35)", borderRadius: 14, padding: "9px 10px", display: "flex", alignItems: "baseline", justifyContent: "center", gap: 6 }}>
+                <span style={{ fontFamily: "'Big Shoulders Display',sans-serif", fontWeight: 800, fontSize: 19, lineHeight: 1, color: "#3D2E22" }}>20 min</span>
+                <span style={{ fontSize: 11, opacity: 0.75, color: "#5C4632" }}>· Alívio rápido</span>
               </div>
-              <div style={{ background: "rgba(255,250,242,.7)", backdropFilter: "blur(16px)", WebkitBackdropFilter: "blur(16px)", border: "1px solid rgba(201,123,61,.35)", borderRadius: 16, padding: 14, textAlign: "center" }}>
-                <div style={{ fontFamily: "'Big Shoulders Display',sans-serif", fontWeight: 800, fontSize: 28, lineHeight: 1, color: "#3D2E22" }}>30 min</div>
-                <div style={{ fontSize: 11.5, opacity: 0.75, marginTop: 3, color: "#5C4632" }}>Sessão completa</div>
+              <div style={{ background: "rgba(255,250,242,.7)", backdropFilter: "blur(16px)", WebkitBackdropFilter: "blur(16px)", border: "1px solid rgba(201,123,61,.35)", borderRadius: 14, padding: "9px 10px", display: "flex", alignItems: "baseline", justifyContent: "center", gap: 6 }}>
+                <span style={{ fontFamily: "'Big Shoulders Display',sans-serif", fontWeight: 800, fontSize: 19, lineHeight: 1, color: "#3D2E22" }}>30 min</span>
+                <span style={{ fontSize: 11, opacity: 0.75, color: "#5C4632" }}>· Completa</span>
               </div>
             </div>
 
