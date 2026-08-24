@@ -14,7 +14,7 @@ export default async function Home() {
   const waUrl = `https://wa.me/${WHATSAPP}?text=${msg}`;
 
   return (
-    <div style={{ position: "relative", height: "100dvh", maxWidth: 520, margin: "0 auto", background: "#F3E9DA", overflow: "hidden" }}>
+    <div style={{ position: "relative", height: "100dvh", maxWidth: 520, margin: "0 auto", background: "#F3E9DA", overflow: "hidden", containerType: "inline-size" as any }}>
 
       <div style={{ position: "absolute", inset: "-6% -4%", zIndex: 0, pointerEvents: "none", filter: "blur(2.5px) saturate(1.05)", animation: "drift 46s ease-in-out infinite alternate" }}>
         <Waves intensidade={1} tomAreia={1} />
@@ -42,7 +42,7 @@ export default async function Home() {
           </div>
 
           <div style={{ position: "relative", zIndex: 2, marginTop: "auto", padding: "0 18px 18px", color: "#3D2E22" }}>
-            <div style={{ fontFamily: "'Big Shoulders Display',sans-serif", fontWeight: 900, textTransform: "uppercase", lineHeight: 0.92, fontSize: "clamp(30px,9vw,36px)", marginBottom: 6 }}>
+            <div style={{ fontFamily: "'Big Shoulders Display',sans-serif", fontWeight: 900, textTransform: "uppercase", lineHeight: 0.92, fontSize: "clamp(30px,9cqw,36px)", marginBottom: 6 }}>
               Massagem &amp; recovery<br />na praia
             </div>
 
