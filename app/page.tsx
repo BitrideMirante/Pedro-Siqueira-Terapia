@@ -25,34 +25,34 @@ export default async function Home() {
       <div className="snap" style={{ position: "relative", zIndex: 2, height: "100%", overflowY: "auto", padding: "0 18px calc(96px + env(safe-area-inset-bottom))" }}>
 
         {/* PAINEL 1 · foto + o que é + duração + ação */}
-        <div id="hoje" className="panel" style={{ minHeight: "calc(100dvh - 96px)", position: "relative", margin: "0 -18px", display: "flex", flexDirection: "column" }}>
-          <div style={{ position: "absolute", inset: 0, overflow: "hidden" }}>
-            <img src="/hero/massagem-praia.jpg" alt="" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "60% 35%" }} />
-            <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 150, background: "linear-gradient(180deg, rgba(61,46,34,.55) 0%, rgba(61,46,34,0) 100%)" }} />
-            <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "72%", background: "linear-gradient(180deg, rgba(61,46,34,0) 0%, rgba(61,46,34,.4) 22%, rgba(232,206,171,.75) 42%, rgba(243,233,218,.97) 68%, #F3E9DA 100%)" }} />
-          </div>
+        <div id="hoje" className="panel" style={{ position: "relative", margin: "0 -18px" }}>
+          <div style={{ position: "relative", width: "100%", aspectRatio: "4 / 5", overflow: "hidden" }}>
+            <img src="/hero/massagem-praia.jpg" alt="" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "60% 42%" }} />
+            <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: "36%", background: "linear-gradient(180deg, rgba(61,46,34,.55) 0%, rgba(61,46,34,0) 100%)" }} />
+            <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "22%", background: "linear-gradient(180deg, rgba(243,233,218,0) 0%, #F3E9DA 100%)" }} />
 
-          <div style={{ position: "relative", zIndex: 2, padding: "calc(20px + env(safe-area-inset-top)) 18px 0", display: "flex", alignItems: "center", justifyContent: "space-between", gap: 10 }}>
-            <span style={{ fontFamily: "'IBM Plex Mono',monospace", fontSize: 10.5, letterSpacing: ".14em", textTransform: "uppercase", color: "#FBF3E7", opacity: 0.95 }}>Pedro Siqueira</span>
-            <span style={{ display: "flex", alignItems: "center", gap: 6, fontFamily: "'IBM Plex Mono',monospace", fontSize: 9.5, letterSpacing: ".1em", textTransform: "uppercase", color: "#5C3A20", background: "rgba(243,233,218,.75)", backdropFilter: "blur(10px)", WebkitBackdropFilter: "blur(10px)", border: "1px solid rgba(61,46,34,.2)", borderRadius: 100, padding: "6px 10px" }}>
-              <span style={{ position: "relative", width: 6, height: 6, borderRadius: "50%", background: "#C97B3D", flexShrink: 0 }}>
-                <span style={{ position: "absolute", inset: -6, borderRadius: "50%", border: "1px solid #C97B3D", animation: "pulse 2.4s ease-out infinite" }} />
+            <div style={{ position: "absolute", top: 0, left: 0, right: 0, zIndex: 2, padding: "calc(20px + env(safe-area-inset-top)) 18px 0", display: "flex", alignItems: "center", justifyContent: "space-between", gap: 10 }}>
+              <span style={{ fontFamily: "'IBM Plex Mono',monospace", fontSize: 10.5, letterSpacing: ".14em", textTransform: "uppercase", color: "#FBF3E7", opacity: 0.95 }}>Pedro Siqueira</span>
+              <span style={{ display: "flex", alignItems: "center", gap: 6, fontFamily: "'IBM Plex Mono',monospace", fontSize: 9.5, letterSpacing: ".1em", textTransform: "uppercase", color: "#5C3A20", background: "rgba(243,233,218,.75)", backdropFilter: "blur(10px)", WebkitBackdropFilter: "blur(10px)", border: "1px solid rgba(61,46,34,.2)", borderRadius: 100, padding: "6px 10px" }}>
+                <span style={{ position: "relative", width: 6, height: 6, borderRadius: "50%", background: "#C97B3D", flexShrink: 0 }}>
+                  <span style={{ position: "absolute", inset: -6, borderRadius: "50%", border: "1px solid #C97B3D", animation: "pulse 2.4s ease-out infinite" }} />
+                </span>
+                <span>{status.ativo ? "Atendendo hoje" : "Sem ponto fixo hoje"}</span>
               </span>
-              <span>{status.ativo ? "Atendendo hoje" : "Sem ponto fixo hoje"}</span>
-            </span>
+            </div>
           </div>
 
-          <div style={{ position: "relative", zIndex: 2, marginTop: "auto", padding: "0 18px 18px", color: "#3D2E22" }}>
-            <div style={{ fontFamily: "'Big Shoulders Display',sans-serif", fontWeight: 900, textTransform: "uppercase", lineHeight: 0.94, fontSize: "clamp(23px,6.4cqw,27px)", marginBottom: 6, textShadow: "0 2px 18px rgba(243,233,218,.9), 0 1px 3px rgba(243,233,218,.9)" }}>
+          <div style={{ position: "relative", zIndex: 2, padding: "10px 18px 18px", color: "#3D2E22", background: "#F3E9DA" }}>
+            <div style={{ fontFamily: "'Big Shoulders Display',sans-serif", fontWeight: 900, textTransform: "uppercase", lineHeight: 0.94, fontSize: "clamp(23px,6.4cqw,27px)", marginBottom: 6 }}>
               Massagem &amp; recovery<br />na praia
             </div>
 
             {status.ativo ? (
-              <p style={{ fontSize: 14.5, opacity: 0.85, margin: "0 0 12px", maxWidth: "30ch", color: "#5C4632", textShadow: "0 1px 12px rgba(243,233,218,.9)" }}>
+              <p style={{ fontSize: 14.5, opacity: 0.85, margin: "0 0 12px", maxWidth: "30ch", color: "#5C4632" }}>
                 Hoje em <strong>{status.local || "local a confirmar"}</strong>{status.horario ? ` · ${status.horario}` : ""}. Encontrou por aqui ou combine antes — o corpo agradece.
               </p>
             ) : (
-              <p style={{ fontSize: 14.5, opacity: 0.85, margin: "0 0 12px", maxWidth: "30ch", color: "#5C4632", textShadow: "0 1px 12px rgba(243,233,218,.9)" }}>
+              <p style={{ fontSize: 14.5, opacity: 0.85, margin: "0 0 12px", maxWidth: "30ch", color: "#5C4632" }}>
                 Hoje sem ponto fixo — chame no WhatsApp e combine. O corpo agradece.
               </p>
             )}
