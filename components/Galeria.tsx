@@ -41,8 +41,8 @@ export function Galeria() {
             borderRadius: 20,
             overflow: "hidden",
             scrollSnapAlign: "start",
-            border: "1px solid rgba(143,227,204,.22)",
-            background: "#0a2024",
+            border: "1px solid rgba(61,46,34,.18)",
+            background: "#E8D3AE",
           }}
         >
           {item.tipo === "video" ? (
@@ -71,7 +71,7 @@ export function Galeria() {
               right: 0,
               bottom: 0,
               padding: "20px 12px 10px",
-              background: "linear-gradient(180deg, rgba(7,19,28,0) 0%, rgba(7,19,28,.75) 100%)",
+              background: "linear-gradient(180deg, rgba(61,46,34,0) 0%, rgba(61,46,34,.75) 100%)",
             }}
           >
             <span
@@ -80,7 +80,7 @@ export function Galeria() {
                 fontSize: 9.5,
                 letterSpacing: ".1em",
                 textTransform: "uppercase",
-                color: "#E0BE99",
+                color: "#FBF3E7",
               }}
             >
               {item.legenda}

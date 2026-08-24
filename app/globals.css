@@ -7,19 +7,19 @@ html, body {
 }
 body {
   margin: 0;
-  background: #07131C;
-  color: #EDEAE0;
+  background: #F3E9DA;
+  color: #3D2E22;
   font-family: 'Work Sans', system-ui, sans-serif;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   overscroll-behavior-y: none;
 }
 a {
-  color: #8FE3CC;
+  color: #C97B3D;
   text-decoration: none;
 }
 a:hover {
-  color: #EDEAE0;
+  color: #3D2E22;
 }
 .snap {
   scroll-snap-type: y proximity;
