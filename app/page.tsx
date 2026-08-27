@@ -113,7 +113,7 @@ export default async function Home() {
         <div className="panel" style={{ minHeight: "calc(100dvh - 96px)", display: "flex", flexDirection: "column", justifyContent: "center", padding: "26px 0" }}>
           <div style={{ fontFamily: "'IBM Plex Mono',monospace", fontSize: 10.5, letterSpacing: ".18em", textTransform: "uppercase", color: "#C97B3D", marginBottom: 14 }}>Quem atende</div>
           <div style={{ display: "flex", gap: 14, alignItems: "flex-start" }}>
-            <div style={{ width: 84, height: 106, borderRadius: 14, flexShrink: 0, background: "repeating-linear-gradient(135deg, rgba(61,46,34,.05) 0 6px, rgba(61,46,34,.02) 6px 12px)", border: "1px dashed rgba(201,123,61,.5)", display: "flex", alignItems: "center", justifyContent: "center", textAlign: "center", fontFamily: "'IBM Plex Mono',monospace", fontSize: 9.5, color: "#7A5C3E", padding: 5 }}>sua<br />foto</div>
+            <img src="/quem-atende/pedro-siqueira.jpg" alt="Pedro Siqueira, terapeuta manual" style={{ width: 84, height: 106, borderRadius: 14, flexShrink: 0, objectFit: "cover", objectPosition: "50% 30%", border: "1px solid rgba(61,46,34,.14)" }} />
             <p style={{ fontSize: 15, opacity: 0.92, margin: 0, color: "#3D2E22" }}>Pedro Siqueira — terapeuta manual, com formação em terapia manual e chair massage. Construo minha prática ao lado da Marcela, fisioterapeuta, no consultório Alba, em Rolante (RS). Em Guriú, levo esse cuidado até a praia: um atendimento completo, feito ao ar livre, com os pés na areia.</p>
           </div>
           <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginTop: 20 }}>
