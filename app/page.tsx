@@ -114,9 +114,9 @@ export default async function Home() {
           <div style={{ fontFamily: "'IBM Plex Mono',monospace", fontSize: 10.5, letterSpacing: ".18em", textTransform: "uppercase", color: "#C97B3D", marginBottom: 14 }}>Quem atende</div>
           <div style={{ display: "flex", gap: 14, alignItems: "flex-start" }}>
             <img src="/quem-atende/pedro-siqueira.jpg" alt="Pedro Siqueira, terapeuta manual" style={{ width: 84, height: 106, borderRadius: 14, flexShrink: 0, objectFit: "cover", objectPosition: "50% 30%", border: "1px solid rgba(61,46,34,.14)" }} />
-            <p style={{ fontSize: 15, opacity: 0.92, margin: 0, color: "#3D2E22" }}>Pedro Siqueira — terapeuta manual, com formação em terapia manual e chair massage. Construo minha prática ao lado da Marcela, fisioterapeuta, no consultório Alba, em Rolante (RS). Em Guriú, levo esse cuidado até a praia: um atendimento completo, feito ao ar livre, com os pés na areia.</p>
+            <p style={{ fontSize: 15, opacity: 0.92, margin: 0, color: "#3D2E22" }}>Pedro Siqueira — terapeuta manual, com formação em terapia manual e chair massage. Construo minha prática ao lado da Marcela, fisioterapeuta, no consultório Alba, em Rolante (RS). Em Guriú e Jeri, levo esse cuidado até a praia: um atendimento completo, feito ao ar livre, com os pés na areia.</p>
           </div>
-          <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginTop: 20 }}>
+          <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: 8, marginTop: 20 }}>
             <span style={{ border: "1px solid rgba(61,46,34,.18)", borderRadius: 100, padding: "8px 14px", fontSize: 13.5, color: "#5C3A20" }}>Turistas</span>
             <span style={{ border: "1px solid rgba(61,46,34,.18)", borderRadius: 100, padding: "8px 14px", fontSize: 13.5, color: "#5C3A20" }}>Esportistas</span>
             <span style={{ border: "1px solid rgba(61,46,34,.18)", borderRadius: 100, padding: "8px 14px", fontSize: 13.5, color: "#5C3A20" }}>Hospedados por aqui</span>
@@ -125,7 +125,7 @@ export default async function Home() {
             <div>
               <div style={{ fontFamily: "'IBM Plex Mono',monospace", fontSize: 10, letterSpacing: ".16em", textTransform: "uppercase", color: "#C97B3D" }}>Bastidores · TikTok</div>
               <p style={{ fontSize: 13.5, opacity: 0.82, margin: "5px 0 0", color: "#5C4632" }}>
-                {TIKTOK_ATIVO ? "Acompanhe os bastidores dos atendimentos em Guriú." : "Em breve, vídeos dos atendimentos e da rotina em Guriú."}
+                {TIKTOK_ATIVO ? "Acompanhe os bastidores dos atendimentos em Guriú e Jeri." : "Em breve, vídeos dos atendimentos e da rotina em Guriú e Jeri."}
               </p>
             </div>
             {TIKTOK_ATIVO && (
@@ -138,9 +138,9 @@ export default async function Home() {
         <div id="contato" className="panel" style={{ minHeight: "calc(100dvh - 96px)", display: "flex", flexDirection: "column", justifyContent: "center", padding: "26px 0" }}>
           <div style={{ background: "rgba(255,250,242,.7)", backdropFilter: "blur(22px)", WebkitBackdropFilter: "blur(22px)", border: "1px solid rgba(201,123,61,.3)", borderRadius: 24, padding: 26, display: "flex", flexDirection: "column", alignItems: "center", gap: 18, boxShadow: "0 18px 50px rgba(61,40,20,.18)" }}>
             <div style={{ fontFamily: "'Big Shoulders Display',sans-serif", fontWeight: 800, textTransform: "uppercase", fontSize: 34, lineHeight: 0.92, textAlign: "center", color: "#3D2E22" }}>Fale comigo</div>
-            <p style={{ fontSize: 15, opacity: 0.88, textAlign: "center", margin: 0, maxWidth: "26ch", color: "#5C4632" }}>Chame no WhatsApp e combine seu atendimento em Guriú.</p>
+            <p style={{ fontSize: 15, opacity: 0.88, textAlign: "center", margin: 0, maxWidth: "26ch", color: "#5C4632" }}>Chame no WhatsApp e combine seu atendimento em Guriú e Jeri.</p>
             <a href={waUrl} target="_blank" rel="noreferrer" style={{ display: "flex", alignItems: "center", justifyContent: "center", minHeight: 52, padding: "14px 28px", borderRadius: 16, background: "#C97B3D", color: "#FBF3E7", fontWeight: 600, fontSize: 15.5 }}>Chamar no WhatsApp</a>
-            <p style={{ fontFamily: "'IBM Plex Mono',monospace", fontSize: 10, color: "#7A5C3E", letterSpacing: ".06em", margin: "4px 0 0", textAlign: "center" }}>PEDRO SIQUEIRA · TERAPEUTA MANUAL · GURIÚ, CE</p>
+            <p style={{ fontFamily: "'IBM Plex Mono',monospace", fontSize: 10, color: "#7A5C3E", letterSpacing: ".06em", margin: "4px 0 0", textAlign: "center" }}>PEDRO SIQUEIRA · TERAPEUTA MANUAL · GURIÚ E JERI, CE</p>
           </div>
         </div>
 
