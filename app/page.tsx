@@ -7,7 +7,8 @@ export const dynamic = "force-dynamic"; // sempre busca o status mais recente
 
 const WHATSAPP = (process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "5551980602183").replace(/\D/g, "");
 const TIKTOK_ATIVO = process.env.NEXT_PUBLIC_TIKTOK_ATIVO === "true";
-const TIKTOK_LINK = process.env.NEXT_PUBLIC_TIKTOK_LINK || "https://tiktok.com/@...";
+const TIKTOK_LINK = process.env.NEXT_PUBLIC_TIKTOK_LINK || "https://www.tiktok.com/@pedrosiqueiraterapeuta";
+const TIKTOK_LINK_2 = process.env.NEXT_PUBLIC_TIKTOK_LINK_2 || "https://www.tiktok.com/@quickmassage.viladejeri";
 
 export default async function Home() {
   const status = await lerStatus();
@@ -27,7 +28,7 @@ export default async function Home() {
         {/* PAINEL 1 · foto + o que é + duração + ação */}
         <div id="hoje" className="panel" style={{ position: "relative", margin: "0 -18px" }}>
           <div style={{ position: "relative", width: "100%", aspectRatio: "4 / 5", overflow: "hidden" }}>
-            <img src="/hero/massagem-praia.jpg" alt="" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "60% 42%" }} />
+            <img src="/hero/massagem-praia.jpg" alt="" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "50% 50%" }} />
             <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: "36%", background: "linear-gradient(180deg, rgba(61,46,34,.55) 0%, rgba(61,46,34,0) 100%)" }} />
             <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "22%", background: "linear-gradient(180deg, rgba(243,233,218,0) 0%, #F3E9DA 100%)" }} />
 
@@ -76,7 +77,7 @@ export default async function Home() {
         {/* PAINEL 2 · galeria de atendimentos */}
         <div className="panel" style={{ minHeight: "calc(100dvh - 96px)", display: "flex", flexDirection: "column", justifyContent: "center", padding: "26px 0" }}>
           <div style={{ fontFamily: "'IBM Plex Mono',monospace", fontSize: 10.5, letterSpacing: ".18em", textTransform: "uppercase", color: "#C97B3D", marginBottom: 4 }}>Atendimentos</div>
-          <p style={{ fontSize: 14, opacity: 0.86, margin: "0 0 16px", maxWidth: "32ch", color: "#5C4632" }}>Rolante, na natureza e no consultório Alba.</p>
+          <p style={{ fontSize: 14, opacity: 0.86, margin: "0 0 16px", maxWidth: "32ch", color: "#5C4632" }}>Guriú, Rolante e no consultório Alba.</p>
           <Galeria />
         </div>
 
@@ -121,15 +122,22 @@ export default async function Home() {
             <span style={{ border: "1px solid rgba(61,46,34,.18)", borderRadius: 100, padding: "8px 14px", fontSize: 13.5, color: "#5C3A20" }}>Esportistas</span>
             <span style={{ border: "1px solid rgba(61,46,34,.18)", borderRadius: 100, padding: "8px 14px", fontSize: 13.5, color: "#5C3A20" }}>Hospedados por aqui</span>
           </div>
-          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 12, marginTop: 24, paddingTop: 16, borderTop: "1px solid rgba(61,46,34,.14)" }}>
-            <div>
-              <div style={{ fontFamily: "'IBM Plex Mono',monospace", fontSize: 10, letterSpacing: ".16em", textTransform: "uppercase", color: "#C97B3D" }}>Bastidores · TikTok</div>
-              <p style={{ fontSize: 13.5, opacity: 0.82, margin: "5px 0 0", color: "#5C4632" }}>
-                {TIKTOK_ATIVO ? "Acompanhe os bastidores dos atendimentos em Guriú e Jeri." : "Em breve, vídeos dos atendimentos e da rotina em Guriú e Jeri."}
-              </p>
-            </div>
+          <div style={{ marginTop: 24, paddingTop: 16, borderTop: "1px solid rgba(61,46,34,.14)" }}>
+            <div style={{ fontFamily: "'IBM Plex Mono',monospace", fontSize: 10, letterSpacing: ".16em", textTransform: "uppercase", color: "#C97B3D" }}>Bastidores · TikTok</div>
+            <p style={{ fontSize: 13.5, opacity: 0.82, margin: "5px 0 12px", color: "#5C4632" }}>
+              {TIKTOK_ATIVO ? "Acompanhe os bastidores dos atendimentos em Guriú e Jeri." : "Em breve, vídeos dos atendimentos e da rotina em Guriú e Jeri."}
+            </p>
             {TIKTOK_ATIVO && (
-              <a href={TIKTOK_LINK} target="_blank" rel="noreferrer" style={{ flexShrink: 0, padding: "11px 15px", borderRadius: 100, border: "1px solid rgba(61,46,34,.26)", color: "#3D2E22", fontWeight: 600, fontSize: 13.5 }}>Ver</a>
+              <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                <a href={TIKTOK_LINK} target="_blank" rel="noreferrer" style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "11px 15px", borderRadius: 100, border: "1px solid rgba(61,46,34,.26)", color: "#3D2E22", fontWeight: 600, fontSize: 13.5, textDecoration: "none" }}>
+                  <span>@pedrosiqueiraterapeuta</span>
+                  <span style={{ opacity: 0.6, fontSize: 12 }}>Ver →</span>
+                </a>
+                <a href={TIKTOK_LINK_2} target="_blank" rel="noreferrer" style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "11px 15px", borderRadius: 100, border: "1px solid rgba(61,46,34,.26)", color: "#3D2E22", fontWeight: 600, fontSize: 13.5, textDecoration: "none" }}>
+                  <span>@quickmassage.viladejeri</span>
+                  <span style={{ opacity: 0.6, fontSize: 12 }}>Ver →</span>
+                </a>
+              </div>
             )}
           </div>
         </div>
