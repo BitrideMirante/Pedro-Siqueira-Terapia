@@ -95,7 +95,7 @@ export default async function Home() {
             </div>
             <div>
               <div style={{ fontFamily: "'IBM Plex Mono',monospace", fontSize: 10, letterSpacing: ".12em", textTransform: "uppercase", color: "#7C9473" }}>Recovery · a técnica</div>
-              <p style={{ fontSize: 14, margin: "5px 0 0", opacity: 0.88, color: "#5C4632" }}>Meu jeito de trabalhar: um mix de terapias pra recuperar o corpo de atletas e de quem passou o dia puxado.</p>
+              <p style={{ fontSize: 14, margin: "5px 0 0", opacity: 0.88, color: "#5C4632" }}>Misturo várias terapias numa sessão só, de acordo com o que o seu corpo está pedindo naquele dia. Na Quick, a massagem é objetiva: vai direto no que precisa de alívio, pra recuperar o corpo de atletas e de quem está cansado.</p>
             </div>
             <div style={{ paddingTop: 12, borderTop: "1px solid rgba(61,46,34,.14)" }}>
               <div style={{ fontFamily: "'IBM Plex Mono',monospace", fontSize: 10, letterSpacing: ".12em", textTransform: "uppercase", color: "#C97B3D", marginBottom: 8 }}>O mix de técnicas</div>
