@@ -6,6 +6,7 @@ import { BarraAcao } from "@/components/BarraAcao";
 export const dynamic = "force-dynamic"; // sempre busca o status mais recente
 
 const WHATSAPP = (process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "5551980602183").replace(/\D/g, "");
+const INSTAGRAM_LINK = process.env.NEXT_PUBLIC_INSTAGRAM_LINK || "https://www.instagram.com/pedrosiqueiraterapeuta/";
 const TIKTOK_ATIVO = process.env.NEXT_PUBLIC_TIKTOK_ATIVO === "true";
 const TIKTOK_LINK = process.env.NEXT_PUBLIC_TIKTOK_LINK || "https://www.tiktok.com/@pedrosiqueiraterapeuta";
 const TIKTOK_LINK_2 = process.env.NEXT_PUBLIC_TIKTOK_LINK_2 || "https://www.tiktok.com/@quickmassage.viladejeri";
@@ -77,7 +78,7 @@ export default async function Home() {
         {/* PAINEL 2 · galeria de atendimentos */}
         <div className="panel" style={{ minHeight: "calc(100dvh - 96px)", display: "flex", flexDirection: "column", justifyContent: "center", padding: "26px 0" }}>
           <div style={{ fontFamily: "'IBM Plex Mono',monospace", fontSize: 10.5, letterSpacing: ".18em", textTransform: "uppercase", color: "#C97B3D", marginBottom: 4 }}>Atendimentos</div>
-          <p style={{ fontSize: 14, opacity: 0.86, margin: "0 0 16px", maxWidth: "32ch", color: "#5C4632" }}>Guriú, Rolante e no consultório Alba.</p>
+          <p style={{ fontSize: 14, opacity: 0.86, margin: "0 0 16px", maxWidth: "32ch", color: "#5C4632" }}>Jeri, Rolante e no consultório Alba.</p>
           <Galeria />
         </div>
 
@@ -115,7 +116,7 @@ export default async function Home() {
           <div style={{ fontFamily: "'IBM Plex Mono',monospace", fontSize: 10.5, letterSpacing: ".18em", textTransform: "uppercase", color: "#C97B3D", marginBottom: 14 }}>Quem atende</div>
           <div style={{ display: "flex", gap: 14, alignItems: "flex-start" }}>
             <img src="/quem-atende/pedro-siqueira.jpg" alt="Pedro Siqueira, terapeuta manual" style={{ width: 84, height: 106, borderRadius: 14, flexShrink: 0, objectFit: "cover", objectPosition: "50% 30%", border: "1px solid rgba(61,46,34,.14)" }} />
-            <p style={{ fontSize: 15, opacity: 0.92, margin: 0, color: "#3D2E22" }}>Pedro Siqueira — terapeuta manual, com formação em terapia manual e chair massage. Construo minha prática ao lado da Marcela, fisioterapeuta, no consultório Alba, em Rolante (RS). Em Guriú e Jeri, levo esse cuidado até a praia: um atendimento completo, feito ao ar livre, com os pés na areia.</p>
+            <p style={{ fontSize: 15, opacity: 0.92, margin: 0, color: "#3D2E22" }}>Pedro Siqueira — terapeuta manual, com formação em terapia manual e chair massage. Construo minha prática ao lado da Marcela, fisioterapeuta, no consultório Alba, em Rolante (RS). Em Jeri, levo esse cuidado até a praia: um atendimento completo, feito ao ar livre, com os pés na areia.</p>
           </div>
           <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: 8, marginTop: 20 }}>
             <span style={{ border: "1px solid rgba(61,46,34,.18)", borderRadius: 100, padding: "8px 14px", fontSize: 13.5, color: "#5C3A20" }}>Turistas</span>
@@ -123,22 +124,28 @@ export default async function Home() {
             <span style={{ border: "1px solid rgba(61,46,34,.18)", borderRadius: 100, padding: "8px 14px", fontSize: 13.5, color: "#5C3A20" }}>Hospedados por aqui</span>
           </div>
           <div style={{ marginTop: 24, paddingTop: 16, borderTop: "1px solid rgba(61,46,34,.14)" }}>
-            <div style={{ fontFamily: "'IBM Plex Mono',monospace", fontSize: 10, letterSpacing: ".16em", textTransform: "uppercase", color: "#C97B3D" }}>Bastidores · TikTok</div>
+            <div style={{ fontFamily: "'IBM Plex Mono',monospace", fontSize: 10, letterSpacing: ".16em", textTransform: "uppercase", color: "#C97B3D" }}>Bastidores · Instagram e TikTok</div>
             <p style={{ fontSize: 13.5, opacity: 0.82, margin: "5px 0 12px", color: "#5C4632" }}>
-              {TIKTOK_ATIVO ? "Acompanhe os bastidores dos atendimentos em Guriú e Jeri." : "Em breve, vídeos dos atendimentos e da rotina em Guriú e Jeri."}
+              {TIKTOK_ATIVO ? "Acompanhe os bastidores dos atendimentos em Jeri." : "Em breve, vídeos dos atendimentos e da rotina em Jeri."}
             </p>
+            <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+              <a href={INSTAGRAM_LINK} target="_blank" rel="noreferrer" style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "11px 15px", borderRadius: 100, border: "1px solid rgba(61,46,34,.26)", color: "#3D2E22", fontWeight: 600, fontSize: 13.5, textDecoration: "none" }}>
+                <span>@pedrosiqueiraterapeuta</span>
+                <span style={{ opacity: 0.6, fontSize: 12 }}>Instagram →</span>
+              </a>
             {TIKTOK_ATIVO && (
-              <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+              <>
                 <a href={TIKTOK_LINK} target="_blank" rel="noreferrer" style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "11px 15px", borderRadius: 100, border: "1px solid rgba(61,46,34,.26)", color: "#3D2E22", fontWeight: 600, fontSize: 13.5, textDecoration: "none" }}>
                   <span>@pedrosiqueiraterapeuta</span>
-                  <span style={{ opacity: 0.6, fontSize: 12 }}>Ver →</span>
+                  <span style={{ opacity: 0.6, fontSize: 12 }}>TikTok →</span>
                 </a>
                 <a href={TIKTOK_LINK_2} target="_blank" rel="noreferrer" style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "11px 15px", borderRadius: 100, border: "1px solid rgba(61,46,34,.26)", color: "#3D2E22", fontWeight: 600, fontSize: 13.5, textDecoration: "none" }}>
                   <span>@quickmassage.viladejeri</span>
-                  <span style={{ opacity: 0.6, fontSize: 12 }}>Ver →</span>
+                  <span style={{ opacity: 0.6, fontSize: 12 }}>TikTok →</span>
                 </a>
-              </div>
+              </>
             )}
+            </div>
           </div>
         </div>
 
@@ -146,9 +153,9 @@ export default async function Home() {
         <div id="contato" className="panel" style={{ minHeight: "calc(100dvh - 96px)", display: "flex", flexDirection: "column", justifyContent: "center", padding: "26px 0" }}>
           <div style={{ background: "rgba(255,250,242,.7)", backdropFilter: "blur(22px)", WebkitBackdropFilter: "blur(22px)", border: "1px solid rgba(201,123,61,.3)", borderRadius: 24, padding: 26, display: "flex", flexDirection: "column", alignItems: "center", gap: 18, boxShadow: "0 18px 50px rgba(61,40,20,.18)" }}>
             <div style={{ fontFamily: "'Big Shoulders Display',sans-serif", fontWeight: 800, textTransform: "uppercase", fontSize: 34, lineHeight: 0.92, textAlign: "center", color: "#3D2E22" }}>Fale comigo</div>
-            <p style={{ fontSize: 15, opacity: 0.88, textAlign: "center", margin: 0, maxWidth: "26ch", color: "#5C4632" }}>Chame no WhatsApp e combine seu atendimento em Guriú e Jeri.</p>
+            <p style={{ fontSize: 15, opacity: 0.88, textAlign: "center", margin: 0, maxWidth: "26ch", color: "#5C4632" }}>Chame no WhatsApp e combine seu atendimento em Jeri.</p>
             <a href={waUrl} target="_blank" rel="noreferrer" style={{ display: "flex", alignItems: "center", justifyContent: "center", minHeight: 52, padding: "14px 28px", borderRadius: 16, background: "#C97B3D", color: "#FBF3E7", fontWeight: 600, fontSize: 15.5 }}>Chamar no WhatsApp</a>
-            <p style={{ fontFamily: "'IBM Plex Mono',monospace", fontSize: 10, color: "#7A5C3E", letterSpacing: ".06em", margin: "4px 0 0", textAlign: "center" }}>PEDRO SIQUEIRA · TERAPEUTA MANUAL · GURIÚ E JERI, CE</p>
+            <p style={{ fontFamily: "'IBM Plex Mono',monospace", fontSize: 10, color: "#7A5C3E", letterSpacing: ".06em", margin: "4px 0 0", textAlign: "center" }}>PEDRO SIQUEIRA · TERAPEUTA MANUAL · JERI, CE</p>
           </div>
         </div>
 

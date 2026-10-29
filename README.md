@@ -1,7 +1,7 @@
 # Cartão Pedro Siqueira — Next.js + Vercel KV
 
 Cartão-site de Pedro Siqueira (terapeuta manual · Quick Massagem & Recovery ·
-Guriú, CE), agora com o status "atendendo hoje" gravado num banco de verdade
+Jeri, CE), agora com o status "atendendo hoje" gravado num banco de verdade
 em vez de editado direto no HTML.
 
 ## O que mudou em relação à versão anterior (arquivo `.dc.html`)

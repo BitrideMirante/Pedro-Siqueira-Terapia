@@ -2,9 +2,10 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Pedro Siqueira — Terapeuta Manual · Quick Massagem & Recovery · Guriú, CE",
+  metadataBase: new URL("https://pedrosiqueiraterapeuta.com.br"),
+  title: "Pedro Siqueira — Terapeuta Manual · Quick Massagem & Recovery · Jeri, CE",
   description:
-    "Está por Guriú? Recupere o corpo depois da praia, do esporte ou da estrada. Atendimento na hora ou combinado antes.",
+    "Está por Jeri? Recupere o corpo depois da praia, do esporte ou da estrada. Atendimento na hora ou combinado antes.",
 };
 
 export const viewport: Viewport = {

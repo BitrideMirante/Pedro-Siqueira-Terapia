@@ -9,6 +9,13 @@ type Status = {
   atualizadoEm: string;
 };
 
+// Atalhos de um toque. Pra mudar/adicionar um ponto, é só editar esta lista.
+// horario vazio = Pedro preenche na hora.
+const PONTOS_FIXOS: { nome: string; horario: string }[] = [
+  { nome: "Praia principal", horario: "" },
+  { nome: "Praça da vila, em frente ao Jeri 20", horario: "18h às 23h" },
+];
+
 export function AdminForm({ statusInicial }: { statusInicial: Status }) {
   const [token, setToken] = useState("");
   const [ativo, setAtivo] = useState(statusInicial.ativo);
@@ -43,6 +50,13 @@ export function AdminForm({ statusInicial }: { statusInicial: Status }) {
     }
   }
 
+  function escolherPonto(p: { nome: string; horario: string }) {
+    setAtivo(true);
+    setLocal(p.nome);
+    setHorario(p.horario);
+    setMensagem(null);
+  }
+
   const campo: React.CSSProperties = {
     width: "100%",
     padding: "12px 14px",
@@ -72,6 +86,38 @@ export function AdminForm({ statusInicial }: { statusInicial: Status }) {
       <div>
         <label style={label}>Token de acesso</label>
         <input style={campo} type="password" value={token} onChange={(e) => setToken(e.target.value)} placeholder="Seu token" />
+      </div>
+
+      <div>
+        <label style={label}>Pontos fixos</label>
+        <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+          {PONTOS_FIXOS.map((p) => {
+            const selecionado = ativo && local === p.nome;
+            return (
+              <button
+                key={p.nome}
+                type="button"
+                onClick={() => escolherPonto(p)}
+                style={{
+                  textAlign: "left",
+                  padding: "12px 14px",
+                  borderRadius: 12,
+                  border: selecionado ? "1px solid #6FE0C0" : "1px solid rgba(237,234,224,.22)",
+                  background: selecionado ? "rgba(111,224,192,.16)" : "rgba(10,32,36,.5)",
+                  color: "#EDEAE0",
+                  fontSize: 15,
+                  fontFamily: "'Work Sans', sans-serif",
+                  cursor: "pointer",
+                }}
+              >
+                {p.nome}
+                <span style={{ display: "block", fontSize: 12.5, opacity: 0.7, marginTop: 2 }}>
+                  {p.horario || "horário você preenche"}
+                </span>
+              </button>
+            );
+          })}
+        </div>
       </div>
 
       <label style={{ display: "flex", alignItems: "center", gap: 10, cursor: "pointer" }}>
