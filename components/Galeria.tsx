@@ -6,6 +6,7 @@ type ItemGaleria = {
 };
 
 const ITENS: ItemGaleria[] = [
+  { tipo: "video", src: "/galeria/atendimento-praca-1.mp4", poster: "/galeria/poster-praca-1.jpg", legenda: "Praça da vila · Jeri" },
   { tipo: "video", src: "/galeria/atendimento-guriu-1.mp4", poster: "/galeria/poster-guriu-1.jpg", legenda: "Guriú · CE" },
   { tipo: "video", src: "/galeria/atendimento-rio-1.mp4", poster: "/galeria/poster-1.jpg", legenda: "Rolante · RS" },
   { tipo: "foto", src: "/galeria/atendimento-foto-1.jpg", legenda: "Rolante · RS" },

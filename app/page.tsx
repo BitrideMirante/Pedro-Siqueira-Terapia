@@ -59,15 +59,17 @@ export default async function Home() {
               </p>
             )}
 
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8, marginBottom: 12 }}>
-              <div style={{ background: "rgba(255,250,242,.7)", backdropFilter: "blur(16px)", WebkitBackdropFilter: "blur(16px)", border: "1px solid rgba(201,123,61,.35)", borderRadius: 14, padding: "9px 10px", display: "flex", alignItems: "baseline", justifyContent: "center", gap: 6 }}>
-                <span style={{ fontFamily: "'Big Shoulders Display',sans-serif", fontWeight: 800, fontSize: 19, lineHeight: 1, color: "#3D2E22" }}>20 min</span>
-                <span style={{ fontSize: 11, opacity: 0.75, color: "#5C4632" }}>· Alívio rápido</span>
-              </div>
-              <div style={{ background: "rgba(255,250,242,.7)", backdropFilter: "blur(16px)", WebkitBackdropFilter: "blur(16px)", border: "1px solid rgba(201,123,61,.35)", borderRadius: 14, padding: "9px 10px", display: "flex", alignItems: "baseline", justifyContent: "center", gap: 6 }}>
-                <span style={{ fontFamily: "'Big Shoulders Display',sans-serif", fontWeight: 800, fontSize: 19, lineHeight: 1, color: "#3D2E22" }}>30 min</span>
-                <span style={{ fontSize: 11, opacity: 0.75, color: "#5C4632" }}>· Completa</span>
-              </div>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 8, marginBottom: 12 }}>
+              {[
+                { min: "15 min", desc: "Pausa rápida" },
+                { min: "20 min", desc: "Alívio rápido" },
+                { min: "30 min", desc: "Completa" },
+              ].map((d) => (
+                <div key={d.min} style={{ background: "rgba(255,250,242,.7)", backdropFilter: "blur(16px)", WebkitBackdropFilter: "blur(16px)", border: "1px solid rgba(201,123,61,.35)", borderRadius: 14, padding: "9px 6px", display: "flex", flexDirection: "column", alignItems: "center", gap: 3 }}>
+                  <span style={{ fontFamily: "'Big Shoulders Display',sans-serif", fontWeight: 800, fontSize: 19, lineHeight: 1, color: "#3D2E22" }}>{d.min}</span>
+                  <span style={{ fontSize: 11, opacity: 0.75, color: "#5C4632" }}>{d.desc}</span>
+                </div>
+              ))}
             </div>
 
             <a href={waUrl} target="_blank" rel="noreferrer" style={{ display: "flex", alignItems: "center", justifyContent: "center", minHeight: 52, borderRadius: 16, background: "#C97B3D", color: "#FBF3E7", fontWeight: 600, fontSize: 15.5, textDecoration: "none" }}>Chamar no WhatsApp</a>
@@ -85,14 +87,23 @@ export default async function Home() {
         {/* PAINEL 3 · serviços + como funciona */}
         <div className="panel" style={{ minHeight: "calc(100dvh - 96px)", display: "flex", flexDirection: "column", justifyContent: "center", gap: 12, padding: "26px 0" }}>
           <div style={{ fontFamily: "'IBM Plex Mono',monospace", fontSize: 10.5, letterSpacing: ".18em", textTransform: "uppercase", color: "#C97B3D" }}>O que eu faço</div>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10 }}>
-            <div style={{ background: "rgba(255,250,242,.6)", backdropFilter: "blur(16px)", WebkitBackdropFilter: "blur(16px)", border: "1px solid rgba(201,123,61,.3)", borderRadius: 18, padding: 16, display: "flex", flexDirection: "column", gap: 8, minHeight: 142 }}>
-              <h3 style={{ fontFamily: "'Big Shoulders Display',sans-serif", fontWeight: 800, textTransform: "uppercase", margin: 0, fontSize: 24, lineHeight: 0.95, color: "#3D2E22" }}>Quick<br />Massagem</h3>
-              <p style={{ margin: "auto 0 0", fontSize: 14, opacity: 0.88, color: "#5C4632" }}>Encontrou, é hora. Ou combine antes, se preferir.</p>
+          <div style={{ background: "rgba(255,250,242,.6)", backdropFilter: "blur(16px)", WebkitBackdropFilter: "blur(16px)", border: "1px solid rgba(201,123,61,.3)", borderRadius: 18, padding: 16, display: "flex", flexDirection: "column", gap: 14 }}>
+            <h3 style={{ fontFamily: "'Big Shoulders Display',sans-serif", fontWeight: 800, textTransform: "uppercase", margin: 0, fontSize: 26, lineHeight: 0.95, color: "#3D2E22" }}>Quick Massagem &amp; Recovery</h3>
+            <div>
+              <div style={{ fontFamily: "'IBM Plex Mono',monospace", fontSize: 10, letterSpacing: ".12em", textTransform: "uppercase", color: "#C97B3D" }}>Quick Massagem · a cadeira</div>
+              <p style={{ fontSize: 14, margin: "5px 0 0", opacity: 0.88, color: "#5C4632" }}>A cadeira de massagem que levo até você: leve, prática e pronta pra atender ao ar livre.</p>
             </div>
-            <div style={{ background: "rgba(232,206,171,.55)", backdropFilter: "blur(16px)", WebkitBackdropFilter: "blur(16px)", border: "1px solid rgba(168,187,147,.5)", borderRadius: 18, padding: 16, display: "flex", flexDirection: "column", gap: 8, minHeight: 142 }}>
-              <h3 style={{ fontFamily: "'Big Shoulders Display',sans-serif", fontWeight: 800, textTransform: "uppercase", margin: 0, fontSize: 24, lineHeight: 0.95, color: "#3D2E22" }}>Recovery</h3>
-              <p style={{ margin: "auto 0 0", fontSize: 14, opacity: 0.88, color: "#5C4632" }}>Cuidado pro corpo depois de um dia intenso.</p>
+            <div>
+              <div style={{ fontFamily: "'IBM Plex Mono',monospace", fontSize: 10, letterSpacing: ".12em", textTransform: "uppercase", color: "#7C9473" }}>Recovery · a técnica</div>
+              <p style={{ fontSize: 14, margin: "5px 0 0", opacity: 0.88, color: "#5C4632" }}>Meu jeito de trabalhar: um mix de terapias pra recuperar o corpo de atletas e de quem passou o dia puxado.</p>
+            </div>
+            <div style={{ paddingTop: 12, borderTop: "1px solid rgba(61,46,34,.14)" }}>
+              <div style={{ fontFamily: "'IBM Plex Mono',monospace", fontSize: 10, letterSpacing: ".12em", textTransform: "uppercase", color: "#C97B3D", marginBottom: 8 }}>O mix de técnicas</div>
+              <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
+                {["Shiatsu", "Liberação miofascial", "Técnicas de quiropraxia", "Movimentos de Thai massagem", "Alinhamento Seitai"].map((t) => (
+                  <span key={t} style={{ border: "1px solid rgba(61,46,34,.18)", borderRadius: 100, padding: "6px 11px", fontSize: 12.5, color: "#5C3A20" }}>{t}</span>
+                ))}
+              </div>
             </div>
           </div>
 
