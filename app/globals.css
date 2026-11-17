@@ -771,3 +771,10 @@ video {
 @media (min-width: 900px) {
   .so-celular { display: none; }
 }
+
+/* com 4 links (TikTok ligado), ficam os 4 lado a lado no computador */
+@media (min-width: 900px) {
+  .links:has(> .link:nth-child(4)) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}

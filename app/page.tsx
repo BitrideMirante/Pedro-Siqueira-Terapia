@@ -7,7 +7,6 @@ export const dynamic = "force-dynamic"; // sempre busca o status mais recente
 const WHATSAPP = (process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "5551980602183").replace(/\D/g, "");
 const INSTAGRAM_LINK = process.env.NEXT_PUBLIC_INSTAGRAM_LINK || "https://www.instagram.com/pedrosiqueiraterapeuta/";
 const TIKTOK_ATIVO = process.env.NEXT_PUBLIC_TIKTOK_ATIVO === "true";
-const TIKTOK_LINK = process.env.NEXT_PUBLIC_TIKTOK_LINK || "https://www.tiktok.com/@pedrosiqueiraterapeuta";
 const TIKTOK_LINK_2 = process.env.NEXT_PUBLIC_TIKTOK_LINK_2 || "https://www.tiktok.com/@quickmassage.viladejeri";
 
 const DURACOES = [
@@ -33,8 +32,6 @@ const EQUIPE = [
     texto: "Quick massagem e massagem de panturrilhas e pés.",
   },
 ];
-
-const TECNICAS = ["Shiatsu", "Liberação miofascial", "Técnicas de quiropraxia", "Movimentos de Thai massagem", "Alinhamento Seitai"];
 
 export default async function Home() {
   const status = await lerStatus();
@@ -75,7 +72,6 @@ export default async function Home() {
     },
     ...(TIKTOK_ATIVO
       ? [
-          { href: TIKTOK_LINK, externo: true, foto: "/galeria/poster-1.jpg", rotulo: "TikTok", titulo: "Vídeos", desc: "@pedrosiqueiraterapeuta" },
           { href: TIKTOK_LINK_2, externo: true, foto: "/galeria/poster-praia-1.jpg", posicao: "50% 70%", rotulo: "TikTok", titulo: "Quick massage Jeri", desc: "@quickmassage.viladejeri" },
         ]
       : []),
@@ -210,11 +206,7 @@ export default async function Home() {
               </div>
               <div>
                 <p className="rotulo">O mix de técnicas</p>
-                <div className="chips">
-                  {TECNICAS.map((t) => (
-                    <span key={t}>{t}</span>
-                  ))}
-                </div>
+                <p>Shiatsu, liberação miofascial, técnicas de quiropraxia, movimentos de Thai massagem e alinhamento Seitai.</p>
               </div>
             </div>
 
