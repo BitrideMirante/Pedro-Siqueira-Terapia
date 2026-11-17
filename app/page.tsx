@@ -1,5 +1,4 @@
 import { lerStatus } from "@/lib/kv";
-import { Waves } from "@/components/Waves";
 import { Galeria } from "@/components/Galeria";
 import { BarraAcao } from "@/components/BarraAcao";
 
@@ -11,169 +10,303 @@ const TIKTOK_ATIVO = process.env.NEXT_PUBLIC_TIKTOK_ATIVO === "true";
 const TIKTOK_LINK = process.env.NEXT_PUBLIC_TIKTOK_LINK || "https://www.tiktok.com/@pedrosiqueiraterapeuta";
 const TIKTOK_LINK_2 = process.env.NEXT_PUBLIC_TIKTOK_LINK_2 || "https://www.tiktok.com/@quickmassage.viladejeri";
 
+const DURACOES = [
+  { min: "15", desc: "Pausa rápida" },
+  { min: "20", desc: "Alívio rápido" },
+  { min: "30", desc: "Completa" },
+];
+
+// Quem atende. Pra trocar a foto, é só mudar o caminho em "foto".
+const EQUIPE = [
+  {
+    nome: "Pedro Siqueira",
+    funcao: "Terapeuta manual",
+    foto: "/quem-atende/pedro-siqueira-noite.jpg",
+    posicao: "50% 50%",
+    texto: "Formação em terapia manual e chair massage. Quick massagem e recovery.",
+  },
+  {
+    nome: "Marcela",
+    funcao: "Fisioterapeuta",
+    foto: "/quem-atende/marcela.jpg",
+    posicao: "50% 0%",
+    texto: "Quick massagem e massagem de panturrilhas e pés.",
+  },
+];
+
+const TECNICAS = ["Shiatsu", "Liberação miofascial", "Técnicas de quiropraxia", "Movimentos de Thai massagem", "Alinhamento Seitai"];
+
 export default async function Home() {
   const status = await lerStatus();
-  const msg = encodeURIComponent("Oi, Pedro! Vi seu cartão e queria saber sobre um atendimento.");
+  const msg = encodeURIComponent("Oi, Pedro! Vi seu site e queria saber sobre um atendimento.");
   const waUrl = `https://wa.me/${WHATSAPP}?text=${msg}`;
+  const ativo = status.ativo;
+  const local = status.local || "Local a confirmar";
+
+  // Links com foto da seção final. Cada bloco inteiro é clicável.
+  type LinkFoto = { href: string; externo: boolean; foto: string; posicao?: string; rotulo: string; titulo: string; desc: string };
+  const links: LinkFoto[] = [
+    {
+      href: waUrl,
+      externo: true,
+      foto: "/fotos/pedro-jeri.jpg",
+      posicao: "78% 40%",
+      rotulo: "WhatsApp",
+      titulo: "Agendar atendimento",
+      desc: "Combine o horário e o local que ficam bons pra você.",
+    },
+    {
+      href: "#hoje",
+      externo: false,
+      foto: "/fotos/marcela-atendendo.jpg",
+      posicao: "50% 25%",
+      rotulo: ativo ? "Atendendo hoje" : "Hoje",
+      titulo: "Onde estamos hoje",
+      desc: ativo ? `${local}${status.horario ? ` · ${status.horario}` : ""}` : "Sem ponto fixo. Combine pelo WhatsApp.",
+    },
+    {
+      href: INSTAGRAM_LINK,
+      externo: true,
+      foto: "/fotos/pedro-ombro.jpg",
+      posicao: "12% 50%",
+      rotulo: "Instagram",
+      titulo: "Bastidores",
+      desc: "@pedrosiqueiraterapeuta",
+    },
+    ...(TIKTOK_ATIVO
+      ? [
+          { href: TIKTOK_LINK, externo: true, foto: "/galeria/poster-1.jpg", rotulo: "TikTok", titulo: "Vídeos", desc: "@pedrosiqueiraterapeuta" },
+          { href: TIKTOK_LINK_2, externo: true, foto: "/galeria/poster-praia-1.jpg", posicao: "50% 70%", rotulo: "TikTok", titulo: "Quick massage Jeri", desc: "@quickmassage.viladejeri" },
+        ]
+      : []),
+  ];
 
   return (
-    <div style={{ position: "relative", height: "100dvh", maxWidth: 520, margin: "0 auto", background: "#F3E9DA", overflow: "hidden", containerType: "inline-size" as any }}>
-
-      <div style={{ position: "absolute", inset: "-6% -4%", zIndex: 0, pointerEvents: "none", filter: "blur(2.5px) saturate(1.05)", animation: "drift 46s ease-in-out infinite alternate" }}>
-        <Waves intensidade={1} tomAreia={1} />
+    <>
+      {/* STATUS DO DIA · sempre visível no topo */}
+      <div className="status-barra">
+        <div className="wrap">
+          <div className="info">
+            <span className={`ponto ${ativo ? "ao-vivo" : ""}`} />
+            <strong>{ativo ? "Atendendo hoje" : "Sem ponto fixo hoje"}</strong>
+            <span style={{ opacity: 0.75 }}>
+              {ativo ? `${local}${status.horario ? ` · ${status.horario}` : ""}` : "Combine no WhatsApp"}
+            </span>
+          </div>
+          <a href="#hoje">Ver →</a>
+        </div>
       </div>
-      <div style={{ position: "absolute", inset: 0, zIndex: 1, pointerEvents: "none", background: "radial-gradient(120% 65% at 50% 0%, rgba(243,233,218,.35) 0%, rgba(243,233,218,.05) 42%, rgba(243,233,218,.55) 100%)" }} />
 
-      <div className="snap" style={{ position: "relative", zIndex: 2, height: "100%", overflowY: "auto", padding: "0 18px calc(96px + env(safe-area-inset-bottom))" }}>
+      <main>
+        {/* HERO */}
+        <section className="hero" id="topo">
+          <div className="wrap">
+            <div className="hero-cabeca">
+              <div className="marca">
+                <b>Pedro Siqueira</b>
+                <span>Terapeuta manual</span>
+              </div>
+              <h1 className="display">
+                Massagem
+                <br className="so-celular" />
+                {" "}&amp; recovery
+              </h1>
+            </div>
 
-        {/* PAINEL 1 · foto + o que é + duração + ação */}
-        <div id="hoje" className="panel" style={{ position: "relative", margin: "0 -18px" }}>
-          <div style={{ position: "relative", width: "100%", aspectRatio: "4 / 5", overflow: "hidden" }}>
-            <img src="/hero/massagem-praia.jpg" alt="" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "50% 50%" }} />
-            <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: "36%", background: "linear-gradient(180deg, rgba(61,46,34,.55) 0%, rgba(61,46,34,0) 100%)" }} />
-            <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "22%", background: "linear-gradient(180deg, rgba(243,233,218,0) 0%, #F3E9DA 100%)" }} />
+            <div className="hero-corpo">
+              <p className="lead">
+                Quick massagem na cadeira que levamos até você. Sessão objetiva, direto no que o corpo está pedindo.
+              </p>
+              <div className="hero-acoes">
+                <a className="btn btn-escuro" href={waUrl} target="_blank" rel="noreferrer">
+                  Chamar no WhatsApp
+                </a>
+                <small>Pix, cartão ou dinheiro</small>
+              </div>
 
-            <div style={{ position: "absolute", top: 0, left: 0, right: 0, zIndex: 2, padding: "calc(20px + env(safe-area-inset-top)) 18px 0", display: "flex", alignItems: "center", justifyContent: "space-between", gap: 10 }}>
-              <span style={{ fontFamily: "'IBM Plex Mono',monospace", fontSize: 10.5, letterSpacing: ".14em", textTransform: "uppercase", color: "#FBF3E7", opacity: 0.95 }}>Pedro Siqueira</span>
-              <span style={{ display: "flex", alignItems: "center", gap: 6, fontFamily: "'IBM Plex Mono',monospace", fontSize: 9.5, letterSpacing: ".1em", textTransform: "uppercase", color: "#5C3A20", background: "rgba(243,233,218,.75)", backdropFilter: "blur(10px)", WebkitBackdropFilter: "blur(10px)", border: "1px solid rgba(61,46,34,.2)", borderRadius: 100, padding: "6px 10px" }}>
-                <span style={{ position: "relative", width: 6, height: 6, borderRadius: "50%", background: "#C97B3D", flexShrink: 0 }}>
-                  <span style={{ position: "absolute", inset: -6, borderRadius: "50%", border: "1px solid #C97B3D", animation: "pulse 2.4s ease-out infinite" }} />
-                </span>
-                <span>{status.ativo ? "Atendendo hoje" : "Sem ponto fixo hoje"}</span>
-              </span>
+              <div className="hoje" id="hoje">
+                <div className={`topo ${ativo ? "ao-vivo" : "fora"}`}>
+                  <span className={`ponto ${ativo ? "ao-vivo" : ""}`} />
+                  {ativo ? "Atendendo hoje" : "Hoje sem ponto fixo"}
+                </div>
+                {ativo ? (
+                  <>
+                    <div className="local">{local}</div>
+                    {status.horario && <div className="horario">{status.horario}</div>}
+                    <div className="nota">Encontrou por aqui? Pode chegar. Prefere garantir horário? Chame no WhatsApp.</div>
+                  </>
+                ) : (
+                  <>
+                    <div className="local">Combine seu horário</div>
+                    <div className="nota">Chame no WhatsApp e a gente marca onde e quando fica bom pra você.</div>
+                  </>
+                )}
+              </div>
+            </div>
+
+            <div className="hero-foto">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/hero/atendimento-noite-jeri.jpg" alt="Pedro Siqueira fazendo massagem na cadeira, à noite em Jeri" />
             </div>
           </div>
+        </section>
 
-          <div style={{ position: "relative", zIndex: 2, padding: "10px 18px 18px", color: "#3D2E22", background: "#F3E9DA" }}>
-            <div style={{ fontFamily: "'Big Shoulders Display',sans-serif", fontWeight: 900, textTransform: "uppercase", lineHeight: 0.94, fontSize: "clamp(23px,6.4cqw,27px)", marginBottom: 6 }}>
-              Massagem &amp; recovery<br />na praia
+        {/* ATENDIMENTOS · o trabalho em foto e vídeo */}
+        <section className="secao">
+          <div className="wrap">
+            <div className="secao-topo">
+              <div>
+                <p className="rotulo">Atendimentos</p>
+                <h2 className="display">O trabalho</h2>
+              </div>
+              <p>Jeri, Rolante e no consultório Alba.</p>
+            </div>
+            <Galeria />
+          </div>
+        </section>
+
+        {/* SERVIÇO */}
+        <section className="secao">
+          <div className="wrap">
+            <div className="secao-topo">
+              <div>
+                <p className="rotulo">O que a gente faz</p>
+                <h2 className="display">
+                  Quick massagem
+                  <br />
+                  &amp; recovery
+                </h2>
+              </div>
             </div>
 
-            {status.ativo ? (
-              <p style={{ fontSize: 14.5, opacity: 0.85, margin: "0 0 12px", maxWidth: "30ch", color: "#5C4632" }}>
-                Hoje em <strong>{status.local || "local a confirmar"}</strong>{status.horario ? ` · ${status.horario}` : ""}. Encontrou por aqui ou combine antes — o corpo agradece.
-              </p>
-            ) : (
-              <p style={{ fontSize: 14.5, opacity: 0.85, margin: "0 0 12px", maxWidth: "30ch", color: "#5C4632" }}>
-                Hoje sem ponto fixo — chame no WhatsApp e combine. O corpo agradece.
-              </p>
-            )}
-
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 8, marginBottom: 12 }}>
-              {[
-                { min: "15 min", desc: "Pausa rápida" },
-                { min: "20 min", desc: "Alívio rápido" },
-                { min: "30 min", desc: "Completa" },
-              ].map((d) => (
-                <div key={d.min} style={{ background: "rgba(255,250,242,.7)", backdropFilter: "blur(16px)", WebkitBackdropFilter: "blur(16px)", border: "1px solid rgba(201,123,61,.35)", borderRadius: 14, padding: "9px 6px", display: "flex", flexDirection: "column", alignItems: "center", gap: 3 }}>
-                  <span style={{ fontFamily: "'Big Shoulders Display',sans-serif", fontWeight: 800, fontSize: 19, lineHeight: 1, color: "#3D2E22" }}>{d.min}</span>
-                  <span style={{ fontSize: 11, opacity: 0.75, color: "#5C4632" }}>{d.desc}</span>
+            <div className="duracoes">
+              {DURACOES.map((d) => (
+                <div key={d.min}>
+                  <div className="num">
+                    {d.min}
+                    <small>min</small>
+                  </div>
+                  <div className="desc">{d.desc}</div>
                 </div>
               ))}
             </div>
 
-            <a href={waUrl} target="_blank" rel="noreferrer" style={{ display: "flex", alignItems: "center", justifyContent: "center", minHeight: 52, borderRadius: 16, background: "#C97B3D", color: "#FBF3E7", fontWeight: 600, fontSize: 15.5, textDecoration: "none" }}>Chamar no WhatsApp</a>
-            <div style={{ textAlign: "center", marginTop: 8, fontSize: 11.5, color: "#7A5C3E", opacity: 0.9 }}>Pix, cartão ou dinheiro</div>
-          </div>
-        </div>
-
-        {/* PAINEL 2 · galeria de atendimentos */}
-        <div className="panel" style={{ minHeight: "calc(100dvh - 96px)", display: "flex", flexDirection: "column", justifyContent: "center", padding: "26px 0" }}>
-          <div style={{ fontFamily: "'IBM Plex Mono',monospace", fontSize: 10.5, letterSpacing: ".18em", textTransform: "uppercase", color: "#C97B3D", marginBottom: 4 }}>Atendimentos</div>
-          <p style={{ fontSize: 14, opacity: 0.86, margin: "0 0 16px", maxWidth: "32ch", color: "#5C4632" }}>Jeri, Rolante e no consultório Alba.</p>
-          <Galeria />
-        </div>
-
-        {/* PAINEL 3 · serviços + como funciona */}
-        <div className="panel" style={{ minHeight: "calc(100dvh - 96px)", display: "flex", flexDirection: "column", justifyContent: "center", gap: 12, padding: "26px 0" }}>
-          <div style={{ fontFamily: "'IBM Plex Mono',monospace", fontSize: 10.5, letterSpacing: ".18em", textTransform: "uppercase", color: "#C97B3D" }}>O que eu faço</div>
-          <div style={{ background: "rgba(255,250,242,.6)", backdropFilter: "blur(16px)", WebkitBackdropFilter: "blur(16px)", border: "1px solid rgba(201,123,61,.3)", borderRadius: 18, padding: 16, display: "flex", flexDirection: "column", gap: 14 }}>
-            <h3 style={{ fontFamily: "'Big Shoulders Display',sans-serif", fontWeight: 800, textTransform: "uppercase", margin: 0, fontSize: 26, lineHeight: 0.95, color: "#3D2E22" }}>Quick Massagem &amp; Recovery</h3>
-            <div>
-              <div style={{ fontFamily: "'IBM Plex Mono',monospace", fontSize: 10, letterSpacing: ".12em", textTransform: "uppercase", color: "#C97B3D" }}>Quick Massagem · a cadeira</div>
-              <p style={{ fontSize: 14, margin: "5px 0 0", opacity: 0.88, color: "#5C4632" }}>A cadeira de massagem que levo até você: leve, prática e pronta pra atender ao ar livre.</p>
+            <div className="servicos">
+              <div>
+                <p className="rotulo">Quick Massagem · a cadeira</p>
+                <p>A cadeira de massagem que levamos até você: leve, prática e pronta pra atender ao ar livre.</p>
+              </div>
+              <div>
+                <p className="rotulo">Recovery · a técnica</p>
+                <p>
+                  Misturo várias terapias numa sessão só, de acordo com o que o seu corpo está pedindo naquele dia. Na Quick,
+                  a massagem é objetiva: vai direto no que precisa de alívio, pra recuperar o corpo de atletas e de quem
+                  está cansado.
+                </p>
+              </div>
+              <div>
+                <p className="rotulo">Panturrilhas e pés · com a Marcela</p>
+                <p>Massagem nas panturrilhas e nos pés, pra quem passou o dia caminhando ou no esporte.</p>
+              </div>
+              <div>
+                <p className="rotulo">O mix de técnicas</p>
+                <div className="chips">
+                  {TECNICAS.map((t) => (
+                    <span key={t}>{t}</span>
+                  ))}
+                </div>
+              </div>
             </div>
-            <div>
-              <div style={{ fontFamily: "'IBM Plex Mono',monospace", fontSize: 10, letterSpacing: ".12em", textTransform: "uppercase", color: "#7C9473" }}>Recovery · a técnica</div>
-              <p style={{ fontSize: 14, margin: "5px 0 0", opacity: 0.88, color: "#5C4632" }}>Misturo várias terapias numa sessão só, de acordo com o que o seu corpo está pedindo naquele dia. Na Quick, a massagem é objetiva: vai direto no que precisa de alívio, pra recuperar o corpo de atletas e de quem está cansado.</p>
-            </div>
-            <div style={{ paddingTop: 12, borderTop: "1px solid rgba(61,46,34,.14)" }}>
-              <div style={{ fontFamily: "'IBM Plex Mono',monospace", fontSize: 10, letterSpacing: ".12em", textTransform: "uppercase", color: "#C97B3D", marginBottom: 8 }}>O mix de técnicas</div>
-              <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
-                {["Shiatsu", "Liberação miofascial", "Técnicas de quiropraxia", "Movimentos de Thai massagem", "Alinhamento Seitai"].map((t) => (
-                  <span key={t} style={{ border: "1px solid rgba(61,46,34,.18)", borderRadius: 100, padding: "6px 11px", fontSize: 12.5, color: "#5C3A20" }}>{t}</span>
-                ))}
+
+            <div className="como">
+              <div>
+                <p className="rotulo">Espontâneo</p>
+                <h4>Encontrou por aqui</h4>
+                <p>Veja no topo do site onde estamos atendendo hoje e apareça.</p>
+              </div>
+              <div>
+                <p className="rotulo">Combinado</p>
+                <h4>Prefere garantir horário</h4>
+                <p>Chame no WhatsApp e a gente combina.</p>
               </div>
             </div>
           </div>
+        </section>
 
-          <div style={{ fontFamily: "'IBM Plex Mono',monospace", fontSize: 10.5, letterSpacing: ".18em", textTransform: "uppercase", color: "#C97B3D", marginTop: 12 }}>Como funciona</div>
-          <div style={{ display: "grid", gap: 1, background: "rgba(61,46,34,.12)", borderRadius: 18, overflow: "hidden" }}>
-            <div style={{ background: "rgba(255,250,242,.55)", backdropFilter: "blur(12px)", WebkitBackdropFilter: "blur(12px)", padding: 16 }}>
-              <div style={{ fontFamily: "'IBM Plex Mono',monospace", fontSize: 10, letterSpacing: ".12em", textTransform: "uppercase", color: "#C97B3D" }}>Espontâneo</div>
-              <div style={{ fontWeight: 600, fontSize: 17, marginTop: 5, color: "#3D2E22" }}>Encontrou por aqui</div>
-              <p style={{ fontSize: 14, margin: "5px 0 0", opacity: 0.86, color: "#5C4632" }}>Veja em &ldquo;Atendendo hoje&rdquo; onde estou e apareça.</p>
+        {/* QUEM ATENDE */}
+        <section className="secao">
+          <div className="wrap">
+            <div className="secao-topo">
+              <div>
+                <p className="rotulo">Quem atende</p>
+                <h2 className="display">Pedro &amp; Marcela</h2>
+              </div>
+              <p>
+                Construímos nossa prática juntos no consultório Alba, em Rolante (RS). Em Jeri, levamos esse cuidado até a
+                praia: um atendimento completo, feito ao ar livre, com os pés na areia.
+              </p>
             </div>
-            <div style={{ background: "rgba(255,250,242,.55)", backdropFilter: "blur(12px)", WebkitBackdropFilter: "blur(12px)", padding: 16 }}>
-              <div style={{ fontFamily: "'IBM Plex Mono',monospace", fontSize: 10, letterSpacing: ".12em", textTransform: "uppercase", color: "#7C9473" }}>Combinado</div>
-              <div style={{ fontWeight: 600, fontSize: 17, marginTop: 5, color: "#3D2E22" }}>Prefere combinar</div>
-              <p style={{ fontSize: 14, margin: "5px 0 0", opacity: 0.86, color: "#5C4632" }}>Quer garantir um horário? Chame no WhatsApp.</p>
-            </div>
-          </div>
-        </div>
 
-        {/* PAINEL 4 · sobre + pra quem */}
-        <div className="panel" style={{ minHeight: "calc(100dvh - 96px)", display: "flex", flexDirection: "column", justifyContent: "center", padding: "26px 0" }}>
-          <div style={{ fontFamily: "'IBM Plex Mono',monospace", fontSize: 10.5, letterSpacing: ".18em", textTransform: "uppercase", color: "#C97B3D", marginBottom: 14 }}>Quem atende</div>
-          <div style={{ display: "flex", gap: 14, alignItems: "flex-start" }}>
-            <img src="/quem-atende/pedro-siqueira.jpg" alt="Pedro Siqueira, terapeuta manual" style={{ width: 84, height: 106, borderRadius: 14, flexShrink: 0, objectFit: "cover", objectPosition: "50% 30%", border: "1px solid rgba(61,46,34,.14)" }} />
-            <p style={{ fontSize: 15, opacity: 0.92, margin: 0, color: "#3D2E22" }}>Pedro Siqueira — terapeuta manual, com formação em terapia manual e chair massage. Construo minha prática ao lado da Marcela, fisioterapeuta, no consultório Alba, em Rolante (RS). Em Jeri, levo esse cuidado até a praia: um atendimento completo, feito ao ar livre, com os pés na areia.</p>
+            <div className="pessoas">
+              {EQUIPE.map((p) => (
+                <div className="pessoa" key={p.nome}>
+                  <div className="pessoa-foto">
+                    {p.foto ? (
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img src={p.foto} alt={`${p.nome}, ${p.funcao.toLowerCase()}`} loading="lazy" style={{ objectPosition: p.posicao }} />
+                    ) : (
+                      <span className="pessoa-sem-foto">{p.nome[0]}</span>
+                    )}
+                  </div>
+                  <p className="rotulo">{p.funcao}</p>
+                  <h3 className="pessoa-nome">{p.nome}</h3>
+                  <p className="pessoa-texto">{p.texto}</p>
+                </div>
+              ))}
+            </div>
+
           </div>
-          <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: 8, marginTop: 20 }}>
-            <span style={{ border: "1px solid rgba(61,46,34,.18)", borderRadius: 100, padding: "8px 14px", fontSize: 13.5, color: "#5C3A20" }}>Turistas</span>
-            <span style={{ border: "1px solid rgba(61,46,34,.18)", borderRadius: 100, padding: "8px 14px", fontSize: 13.5, color: "#5C3A20" }}>Esportistas</span>
-            <span style={{ border: "1px solid rgba(61,46,34,.18)", borderRadius: 100, padding: "8px 14px", fontSize: 13.5, color: "#5C3A20" }}>Hospedados por aqui</span>
-          </div>
-          <div style={{ marginTop: 24, paddingTop: 16, borderTop: "1px solid rgba(61,46,34,.14)" }}>
-            <div style={{ fontFamily: "'IBM Plex Mono',monospace", fontSize: 10, letterSpacing: ".16em", textTransform: "uppercase", color: "#C97B3D" }}>Bastidores · Instagram e TikTok</div>
-            <p style={{ fontSize: 13.5, opacity: 0.82, margin: "5px 0 12px", color: "#5C4632" }}>
-              {TIKTOK_ATIVO ? "Acompanhe os bastidores dos atendimentos em Jeri." : "Em breve, vídeos dos atendimentos e da rotina em Jeri."}
-            </p>
-            <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-              <a href={INSTAGRAM_LINK} target="_blank" rel="noreferrer" style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "11px 15px", borderRadius: 100, border: "1px solid rgba(61,46,34,.26)", color: "#3D2E22", fontWeight: 600, fontSize: 13.5, textDecoration: "none" }}>
-                <span>@pedrosiqueiraterapeuta</span>
-                <span style={{ opacity: 0.6, fontSize: 12 }}>Instagram →</span>
-              </a>
-            {TIKTOK_ATIVO && (
-              <>
-                <a href={TIKTOK_LINK} target="_blank" rel="noreferrer" style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "11px 15px", borderRadius: 100, border: "1px solid rgba(61,46,34,.26)", color: "#3D2E22", fontWeight: 600, fontSize: 13.5, textDecoration: "none" }}>
-                  <span>@pedrosiqueiraterapeuta</span>
-                  <span style={{ opacity: 0.6, fontSize: 12 }}>TikTok →</span>
+        </section>
+
+        {/* CONTATO */}
+        <section className="contato" id="contato">
+          <div className="wrap">
+            <h2 className="display">Fale com a gente</h2>
+            <p className="lead">Chame no WhatsApp e combine seu atendimento.</p>
+
+            <div className="links">
+              {links.map((l) => (
+                <a
+                  key={l.href + l.titulo}
+                  className="link"
+                  href={l.href}
+                  {...(l.externo ? { target: "_blank", rel: "noreferrer" } : {})}
+                >
+                  <div className="link-foto">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={l.foto} alt="" loading="lazy" style={{ objectPosition: l.posicao || "50% 50%" }} />
+                    <span className="link-seta" aria-hidden>
+                      {l.externo ? "↗" : "↑"}
+                    </span>
+                  </div>
+                  <div className="link-texto">
+                    <span className="link-rotulo">{l.rotulo}</span>
+                    <span className="link-titulo">{l.titulo}</span>
+                    <span className="link-desc">{l.desc}</span>
+                  </div>
                 </a>
-                <a href={TIKTOK_LINK_2} target="_blank" rel="noreferrer" style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "11px 15px", borderRadius: 100, border: "1px solid rgba(61,46,34,.26)", color: "#3D2E22", fontWeight: 600, fontSize: 13.5, textDecoration: "none" }}>
-                  <span>@quickmassage.viladejeri</span>
-                  <span style={{ opacity: 0.6, fontSize: 12 }}>TikTok →</span>
-                </a>
-              </>
-            )}
+              ))}
+            </div>
+
+            <div className="assinatura">
+              <span>Pedro Siqueira &amp; Marcela</span>
+              <span>Quick Massagem &amp; Recovery · Pix, cartão ou dinheiro</span>
             </div>
           </div>
-        </div>
+        </section>
+      </main>
 
-        {/* PAINEL 5 · contato */}
-        <div id="contato" className="panel" style={{ minHeight: "calc(100dvh - 96px)", display: "flex", flexDirection: "column", justifyContent: "center", padding: "26px 0" }}>
-          <div style={{ background: "rgba(255,250,242,.7)", backdropFilter: "blur(22px)", WebkitBackdropFilter: "blur(22px)", border: "1px solid rgba(201,123,61,.3)", borderRadius: 24, padding: 26, display: "flex", flexDirection: "column", alignItems: "center", gap: 18, boxShadow: "0 18px 50px rgba(61,40,20,.18)" }}>
-            <div style={{ fontFamily: "'Big Shoulders Display',sans-serif", fontWeight: 800, textTransform: "uppercase", fontSize: 34, lineHeight: 0.92, textAlign: "center", color: "#3D2E22" }}>Fale comigo</div>
-            <p style={{ fontSize: 15, opacity: 0.88, textAlign: "center", margin: 0, maxWidth: "26ch", color: "#5C4632" }}>Chame no WhatsApp e combine seu atendimento em Jeri.</p>
-            <a href={waUrl} target="_blank" rel="noreferrer" style={{ display: "flex", alignItems: "center", justifyContent: "center", minHeight: 52, padding: "14px 28px", borderRadius: 16, background: "#C97B3D", color: "#FBF3E7", fontWeight: 600, fontSize: 15.5 }}>Chamar no WhatsApp</a>
-            <p style={{ fontFamily: "'IBM Plex Mono',monospace", fontSize: 10, color: "#7A5C3E", letterSpacing: ".06em", margin: "4px 0 0", textAlign: "center" }}>PEDRO SIQUEIRA · TERAPEUTA MANUAL · JERI, CE</p>
-          </div>
-        </div>
-
-      </div>
-
-      {/* BARRA DE AÇÃO FIXA */}
       <BarraAcao waUrl={waUrl} />
-    </div>
+    </>
   );
 }

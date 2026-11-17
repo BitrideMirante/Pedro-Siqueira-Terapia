@@ -2,55 +2,41 @@
 
 import { useEffect, useState } from "react";
 
+// Botão de WhatsApp que aparece no rodapé da tela depois que a pessoa passa do topo.
+// Some de novo quando chega na seção de contato (que já tem o botão dela).
 export function BarraAcao({ waUrl }: { waUrl: string }) {
   const [visivel, setVisivel] = useState(false);
 
   useEffect(() => {
-    const alvos = ["hoje", "contato"]
-      .map((id) => document.getElementById(id))
-      .filter((el): el is HTMLElement => !!el);
+    const topo = document.getElementById("topo");
+    const contato = document.getElementById("contato");
+    if (!topo || !contato) return;
 
-    if (alvos.length === 0) return;
+    let topoVisivel = true;
+    let contatoVisivel = false;
+    const atualizar = () => setVisivel(!topoVisivel && !contatoVisivel);
 
-    const estados = new Map<Element, boolean>();
-
-    const observer = new IntersectionObserver(
+    const obs = new IntersectionObserver(
       (entries) => {
-        entries.forEach((entry) => {
-          estados.set(entry.target, entry.intersectionRatio > 0.55);
+        entries.forEach((e) => {
+          if (e.target === topo) topoVisivel = e.isIntersecting;
+          if (e.target === contato) contatoVisivel = e.isIntersecting;
         });
-        const algumPainelProprioVisivel = Array.from(estados.values()).some(Boolean);
-        setVisivel(!algumPainelProprioVisivel);
+        atualizar();
       },
-      { threshold: [0, 0.55, 1] }
+      { threshold: 0.05 }
     );
 
-    alvos.forEach((el) => observer.observe(el));
-    return () => observer.disconnect();
+    obs.observe(topo);
+    obs.observe(contato);
+    return () => obs.disconnect();
   }, []);
 
   return (
-    <div
-      style={{
-        position: "absolute",
-        left: 0,
-        right: 0,
-        bottom: 0,
-        zIndex: 5,
-        padding: "12px 18px calc(12px + env(safe-area-inset-bottom))",
-        background: "linear-gradient(180deg, rgba(243,233,218,0) 0%, rgba(243,233,218,.92) 45%)",
-        backdropFilter: "blur(14px)",
-        WebkitBackdropFilter: "blur(14px)",
-        opacity: visivel ? 1 : 0,
-        transform: visivel ? "translateY(0)" : "translateY(12px)",
-        pointerEvents: visivel ? "auto" : "none",
-        transition: "opacity .25s ease, transform .25s ease",
-      }}
-    >
-      <div style={{ display: "grid", gridTemplateColumns: "1fr auto", gap: 9 }}>
-        <a href={waUrl} target="_blank" rel="noreferrer" style={{ display: "flex", alignItems: "center", justifyContent: "center", minHeight: 52, padding: "14px 18px", borderRadius: 16, background: "#C97B3D", color: "#FBF3E7", fontWeight: 600, fontSize: 15.5 }}>Chamar no WhatsApp</a>
-        <a href="#hoje" style={{ display: "flex", alignItems: "center", justifyContent: "center", minHeight: 52, padding: "14px 18px", borderRadius: 16, border: "1px solid rgba(61,46,34,.22)", color: "#3D2E22", fontFamily: "'IBM Plex Mono',monospace", fontSize: 11, letterSpacing: ".12em", textTransform: "uppercase" }}>Hoje</a>
-      </div>
+    <div className={`flutuante ${visivel ? "visivel" : ""}`} aria-hidden={!visivel}>
+      <a className="btn btn-escuro" href={waUrl} target="_blank" rel="noreferrer" tabIndex={visivel ? 0 : -1}>
+        Chamar no WhatsApp
+      </a>
     </div>
   );
 }
