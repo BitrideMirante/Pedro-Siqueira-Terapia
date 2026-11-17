@@ -778,3 +778,229 @@ video {
     grid-template-columns: repeat(4, 1fr);
   }
 }
+
+/* ---------- celular: abre com a foto grande e o título em cima dela ---------- */
+@media (max-width: 899px) {
+  .hero {
+    padding-top: 0;
+  }
+  .hero .wrap {
+    grid-template-areas:
+      "topo"
+      "corpo";
+    row-gap: 24px;
+  }
+  .hero-foto,
+  .hero-cabeca {
+    grid-area: topo;
+  }
+  .hero-foto {
+    margin: 0 calc(-1 * var(--pad));
+    aspect-ratio: auto;
+    height: min(78svh, 140vw);
+    border-radius: 0;
+  }
+  .hero-foto img {
+    object-position: 38% 50%;
+  }
+  .hero-foto::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 40%, rgba(0, 0, 0, 0.72) 100%);
+  }
+  .hero-cabeca {
+    position: relative;
+    z-index: 2;
+    align-self: end;
+    padding-bottom: 22px;
+    color: #fff;
+  }
+  .hero-cabeca .marca {
+    color: rgba(255, 255, 255, 0.75);
+    margin-bottom: 12px;
+  }
+  .hero-cabeca .marca b {
+    color: #fff;
+  }
+  .hero-corpo {
+    grid-area: corpo;
+  }
+  .hero h1 {
+    font-size: clamp(56px, 16vw, 96px);
+  }
+}
+
+/* "&" mais clássico nos títulos (o da Archivo parecia estranho) */
+.amp {
+  font-family: var(--text);
+  font-stretch: 100%;
+  font-weight: 600;
+  font-size: 0.82em;
+}
+
+/* celular: título do topo menor e mais delicado */
+@media (max-width: 899px) {
+  .hero h1 {
+    font-size: clamp(28px, 8.5vw, 38px);
+    font-weight: 400;
+    font-stretch: 100%;
+    letter-spacing: 0.08em;
+    line-height: 1.02;
+  }
+  .hero h1 .amp {
+    font-weight: 400;
+    font-size: 1em;
+  }
+  .hero-foto::after {
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 55%, rgba(0, 0, 0, 0.65) 100%);
+  }
+}
+
+/* computador: mesmo título fino e espaçado do celular */
+@media (min-width: 900px) {
+  .hero h1 {
+    font-size: clamp(42px, 4.3vw, 62px);
+    font-weight: 400;
+    font-stretch: 100%;
+    letter-spacing: 0.08em;
+    line-height: 1.02;
+  }
+  .hero h1 .amp {
+    font-weight: 400;
+    font-size: 1em;
+  }
+}
+
+/* =========================================================
+   COMPUTADOR: mais imersivo, sem espaços vazios
+   ========================================================= */
+
+.servicos-foto {
+  display: none;
+}
+
+@media (min-width: 900px) {
+  /* topo: foto ocupando a tela, conteúdo por cima */
+  .hero {
+    position: relative;
+    padding: 0;
+    min-height: min(88vh, 860px);
+    display: flex;
+    color: #fff;
+    overflow: hidden;
+  }
+  .hero .wrap {
+    position: static;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 28px;
+    padding-top: 48px;
+    padding-bottom: 56px;
+  }
+  .hero-foto {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    aspect-ratio: auto;
+    border-radius: 0;
+  }
+  .hero-foto img {
+    object-position: 30% 35%;
+  }
+  .hero-foto::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(270deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.25) 45%, rgba(0, 0, 0, 0) 70%),
+      linear-gradient(180deg, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0) 25%, rgba(0, 0, 0, 0) 45%, rgba(0, 0, 0, 0.75) 100%);
+  }
+  .hero-cabeca,
+  .hero-corpo {
+    z-index: 2;
+  }
+  .hero-corpo {
+    position: relative;
+  }
+  .hero-cabeca h1 {
+    position: relative;
+    z-index: 2;
+  }
+  .hero-cabeca .marca {
+    z-index: 2;
+  }
+  .hero-cabeca .marca {
+    position: absolute;
+    top: 32px;
+    left: var(--pad);
+    right: var(--pad);
+    max-width: calc(var(--max) - 2 * var(--pad));
+    margin: 0 auto;
+    color: rgba(255, 255, 255, 0.75);
+  }
+  .hero-cabeca .marca b {
+    color: #fff;
+  }
+  /* texto todo na coluna da direita, sobre as luzes desfocadas */
+  .hero-cabeca,
+  .hero-corpo {
+    width: min(560px, 100%);
+    margin-left: auto;
+  }
+  .hero-corpo p.lead {
+    color: rgba(255, 255, 255, 0.88);
+    margin: 0 0 24px;
+  }
+  .hero-acoes .btn-escuro {
+    background: #fff;
+    color: var(--ink);
+  }
+  .hero-acoes .btn-escuro:hover {
+    background: var(--bg);
+  }
+  .hero .hoje {
+    margin: 28px 0 0;
+    max-width: none;
+    color: var(--ink);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+    border: 0;
+  }
+
+  /* o que a gente faz: foto ao lado dos textos */
+  .servicos-bloco {
+    display: grid;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    gap: 56px;
+    align-items: stretch;
+  }
+  .servicos-foto {
+    display: block;
+    border-radius: 6px;
+    overflow: hidden;
+    min-height: 420px;
+    background: var(--bg-2);
+  }
+  .servicos-foto img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 72% 50%;
+  }
+  .servicos-bloco .servicos {
+    grid-template-columns: 1fr 1fr;
+    gap: 36px 40px;
+    align-content: center;
+  }
+
+  /* pedro & marcela: fotos ocupando a largura toda */
+  .pessoas {
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+  .pessoa-foto {
+    aspect-ratio: 5 / 6;
+  }
+}

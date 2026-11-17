@@ -104,8 +104,8 @@ export default async function Home() {
               </div>
               <h1 className="display">
                 Massagem
-                <br className="so-celular" />
-                {" "}&amp; recovery
+                <br />
+                {" "}<span className="amp">&amp;</span> recovery
               </h1>
             </div>
 
@@ -117,7 +117,6 @@ export default async function Home() {
                 <a className="btn btn-escuro" href={waUrl} target="_blank" rel="noreferrer">
                   Chamar no WhatsApp
                 </a>
-                <small>Pix, cartão ou dinheiro</small>
               </div>
 
               <div className="hoje" id="hoje">
@@ -170,7 +169,7 @@ export default async function Home() {
                 <h2 className="display">
                   Quick massagem
                   <br />
-                  &amp; recovery
+                  <span className="amp">&amp;</span> recovery
                 </h2>
               </div>
             </div>
@@ -187,6 +186,11 @@ export default async function Home() {
               ))}
             </div>
 
+            <div className="servicos-bloco">
+            <div className="servicos-foto">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/galeria/atendimento-foto-1.jpg" alt="Atendimento na cadeira de massagem, dentro do rio" loading="lazy" />
+            </div>
             <div className="servicos">
               <div>
                 <p className="rotulo">Quick Massagem · a cadeira</p>
@@ -208,6 +212,7 @@ export default async function Home() {
                 <p className="rotulo">O mix de técnicas</p>
                 <p>Shiatsu, liberação miofascial, técnicas de quiropraxia, movimentos de Thai massagem e alinhamento Seitai.</p>
               </div>
+            </div>
             </div>
 
             <div className="como">
@@ -231,7 +236,7 @@ export default async function Home() {
             <div className="secao-topo">
               <div>
                 <p className="rotulo">Quem atende</p>
-                <h2 className="display">Pedro &amp; Marcela</h2>
+                <h2 className="display">Pedro <span className="amp">&amp;</span> Marcela</h2>
               </div>
               <p>
                 Construímos nossa prática juntos no consultório Alba, em Rolante (RS). Em Jeri, levamos esse cuidado até a
@@ -292,7 +297,7 @@ export default async function Home() {
 
             <div className="assinatura">
               <span>Pedro Siqueira &amp; Marcela</span>
-              <span>Quick Massagem &amp; Recovery · Pix, cartão ou dinheiro</span>
+              <span>Quick Massagem &amp; Recovery</span>
             </div>
           </div>
         </section>
