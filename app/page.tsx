@@ -1,6 +1,7 @@
 import { lerStatus } from "@/lib/kv";
-import { Galeria } from "@/components/Galeria";
+import { Galeria, Video } from "@/components/Galeria";
 import { BarraAcao } from "@/components/BarraAcao";
+import { HeroVideo } from "@/components/HeroVideo";
 
 export const dynamic = "force-dynamic"; // sempre busca o status mais recente
 
@@ -124,6 +125,7 @@ export default async function Home() {
             <div className="hero-foto">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src="/hero/atendimento-noite-jeri.jpg" alt="Pedro Siqueira fazendo massagem na cadeira, à noite em Jeri" />
+              <HeroVideo src="/galeria/pedro-praca-noite.mp4" poster="/galeria/poster-pedro-praca-noite.jpg" />
             </div>
           </div>
         </section>
@@ -169,9 +171,14 @@ export default async function Home() {
             </div>
 
             <div className="servicos-bloco">
-            <div className="servicos-foto">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/galeria/atendimento-foto-1.jpg" alt="Atendimento na cadeira de massagem, dentro do rio" loading="lazy" />
+            {/* vídeos dos atendimentos: Marcela sempre primeiro. No celular só o dela (o do Pedro já está no topo). */}
+            <div className="servicos-videos">
+              <div className="servicos-video">
+                <Video src="/galeria/marcela-areia-de-cima.mp4" poster="/galeria/poster-marcela-areia.jpg" legenda="Marcela atendendo na areia, vista de cima" />
+              </div>
+              <div className="servicos-video so-computador">
+                <Video src="/galeria/pedro-praca-noite.mp4" poster="/galeria/poster-pedro-praca-noite.jpg" legenda="Pedro atendendo na praça da vila, à noite" />
+              </div>
             </div>
             <div className="servicos">
               <div>

@@ -876,7 +876,23 @@ video {
    COMPUTADOR: mais imersivo, sem espaços vazios
    ========================================================= */
 
-.servicos-foto {
+/* vídeos na seção de serviços */
+.servicos-videos {
+  margin-bottom: 36px;
+}
+.servicos-video {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  border-radius: 6px;
+  overflow: hidden;
+  background: var(--bg-2);
+}
+.servicos-video video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.so-computador {
   display: none;
 }
 
@@ -976,18 +992,17 @@ video {
     gap: 56px;
     align-items: stretch;
   }
-  .servicos-foto {
-    display: block;
-    border-radius: 6px;
-    overflow: hidden;
-    min-height: 420px;
-    background: var(--bg-2);
+  .servicos-videos {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 0;
   }
-  .servicos-foto img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: 72% 50%;
+  .servicos-video {
+    aspect-ratio: 9 / 16;
+  }
+  .so-computador {
+    display: block;
   }
   .servicos-bloco .servicos {
     grid-template-columns: 1fr 1fr;
@@ -1002,5 +1017,34 @@ video {
   }
   .pessoa-foto {
     aspect-ratio: 5 / 6;
+  }
+}
+
+/* vídeo de fundo do topo: só no celular */
+.hero-video {
+  display: none;
+}
+@media (max-width: 899px) {
+  .hero-video {
+    display: block;
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+/* galeria: vídeo do Pedro só no celular (no computador ele fica nos serviços) */
+@media (min-width: 900px) {
+  .galeria .so-celular-item {
+    display: none;
+  }
+}
+/* celular: se sobrar um vídeo sozinho no fim, ele ocupa a largura toda */
+@media (max-width: 719px) {
+  .galeria .item:last-child:nth-child(even) {
+    grid-column: span 2;
+    aspect-ratio: 4 / 5;
   }
 }
