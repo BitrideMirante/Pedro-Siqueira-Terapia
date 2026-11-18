@@ -1,7 +1,6 @@
 import { lerStatus } from "@/lib/kv";
 import { Galeria, Video } from "@/components/Galeria";
 import { BarraAcao } from "@/components/BarraAcao";
-import { HeroVideo } from "@/components/HeroVideo";
 
 export const dynamic = "force-dynamic"; // sempre busca o status mais recente
 
@@ -125,7 +124,6 @@ export default async function Home() {
             <div className="hero-foto">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src="/hero/atendimento-noite-jeri.jpg" alt="Pedro Siqueira fazendo massagem na cadeira, à noite em Jeri" />
-              <HeroVideo src="/galeria/pedro-praca-noite.mp4" poster="/galeria/poster-pedro-praca-noite.jpg" />
             </div>
           </div>
         </section>
