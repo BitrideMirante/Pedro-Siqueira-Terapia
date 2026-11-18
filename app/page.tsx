@@ -79,29 +79,11 @@ export default async function Home() {
 
   return (
     <>
-      {/* STATUS DO DIA · sempre visível no topo */}
-      <div className="status-barra">
-        <div className="wrap">
-          <div className="info">
-            <span className={`ponto ${ativo ? "ao-vivo" : ""}`} />
-            <strong>{ativo ? "Atendendo hoje" : "Sem ponto fixo hoje"}</strong>
-            <span style={{ opacity: 0.75 }}>
-              {ativo ? `${local}${status.horario ? ` · ${status.horario}` : ""}` : "Combine no WhatsApp"}
-            </span>
-          </div>
-          <a href="#hoje">Ver →</a>
-        </div>
-      </div>
-
       <main>
         {/* HERO */}
         <section className="hero" id="topo">
           <div className="wrap">
             <div className="hero-cabeca">
-              <div className="marca">
-                <b>Pedro Siqueira</b>
-                <span>Terapeuta manual</span>
-              </div>
               <h1 className="display">
                 Massagem
                 <br />
