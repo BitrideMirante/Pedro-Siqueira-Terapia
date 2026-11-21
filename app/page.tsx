@@ -19,7 +19,7 @@ const EQUIPE = [
     funcao: "Terapeuta manual",
     foto: "/quem-atende/pedro-braco.jpg",
     posicao: "57% 50%",
-    texto: "Formação em terapia manual e chair massage. Quick massagem e recovery.",
+    texto: "Quick massagem e recovery.",
   },
   {
     nome: "Marcela",
