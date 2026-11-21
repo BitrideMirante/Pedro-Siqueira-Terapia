@@ -1230,3 +1230,19 @@ video {
     align-items: center;
   }
 }
+
+/* computador com TikTok ligado (5 links): 2 fotos deitadas em cima, 3 em pé embaixo */
+@media (min-width: 900px) {
+  .links:has(> .link:nth-child(5)) {
+    grid-template-columns: repeat(6, 1fr);
+  }
+  .links:has(> .link:nth-child(5)) > .link {
+    grid-column: span 2;
+  }
+  .links:has(> .link:nth-child(5)) > .link.link-paisagem {
+    grid-column: span 3;
+  }
+  .links:has(> .link:nth-child(5)) > .link:last-child:nth-child(odd) .link-foto {
+    aspect-ratio: 4 / 5;
+  }
+}

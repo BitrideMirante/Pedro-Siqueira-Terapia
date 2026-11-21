@@ -43,8 +43,8 @@ export default async function Home() {
     {
       href: waUrl,
       externo: true,
-      foto: "/fotos/pedro-gesto.jpg",
-      posicao: "50% 46%",
+      foto: "/quem-atende/pedro-braco.jpg",
+      posicao: "50% 45%",
       paisagem: true,
       rotulo: "WhatsApp",
       titulo: "Agendar atendimento",
@@ -81,7 +81,7 @@ export default async function Home() {
     },
     ...(TIKTOK_ATIVO
       ? [
-          { href: TIKTOK_LINK_2, externo: true, foto: "/galeria/poster-praia-1.jpg", posicao: "50% 70%", rotulo: "TikTok", titulo: "Quick massage Jeri", desc: "@quickmassage.viladejeri" },
+          { href: TIKTOK_LINK_2, externo: true, foto: "/fotos/pedro-gesto.jpg", posicao: "50% 55%", rotulo: "TikTok", titulo: "Quick massage Jeri", desc: "@quickmassage.viladejeri" },
         ]
       : []),
   ];
