@@ -26,7 +26,7 @@ const EQUIPE = [
     funcao: "Fisioterapeuta",
     foto: "/quem-atende/marcela-retrato.jpg",
     posicao: "50% 35%",
-    texto: "Quick massagem e massagem de panturrilhas e pés.",
+    texto: "Quick massagem e massagem nas pernas, com drenagem e liberação.",
   },
 ];
 
@@ -102,7 +102,8 @@ export default async function Home() {
 
             <div className="hero-corpo">
               <p className="lead">
-                Quick massagem na cadeira que levamos até você. Sessão objetiva, direto no que o corpo está pedindo.
+                Quick massagem na cadeira que levamos até você: na praia, na pousada ou no seu evento. Sessão objetiva,
+                direto no que o corpo está pedindo.
               </p>
               <div className="hero-acoes">
                 <a className="btn btn-escuro" href={waUrl} target="_blank" rel="noreferrer">

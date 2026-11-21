@@ -1246,3 +1246,36 @@ video {
     aspect-ratio: 4 / 5;
   }
 }
+
+/* ---------- página de serviços: eventos ---------- */
+.eventos-grid {
+  display: grid;
+  gap: 24px;
+}
+.eventos-grid h2 {
+  font-size: clamp(40px, 7vw, 76px);
+}
+.eventos-texto p {
+  margin: 0 0 20px;
+  color: var(--ink-2);
+  max-width: 46ch;
+  font-size: 17px;
+}
+.eventos-lista {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 28px;
+  border-top: 1px solid var(--line);
+}
+.eventos-lista li {
+  padding: 12px 0;
+  border-bottom: 1px solid var(--line);
+  font-weight: 500;
+}
+@media (min-width: 900px) {
+  .eventos-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: start;
+  }
+}

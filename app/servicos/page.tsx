@@ -17,6 +17,7 @@ const DURACOES = [
 export default function Servicos() {
   const msg = encodeURIComponent("Oi, Pedro! Vi seu site e queria saber sobre um atendimento.");
   const waUrl = `https://wa.me/${WHATSAPP}?text=${msg}`;
+  const waEventos = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent("Oi, Pedro! Vi o site e quero conversar sobre massagem para um evento.")}`;
 
   return (
     <main>
@@ -73,8 +74,8 @@ export default function Servicos() {
                 </p>
               </div>
               <div>
-                <p className="rotulo">Panturrilhas e pés · com a Marcela</p>
-                <p>Massagem nas panturrilhas e nos pés, pra quem passou o dia caminhando ou no esporte.</p>
+                <p className="rotulo">Pernas e pés · com a Marcela</p>
+                <p>Massagem nas pernas e nos pés, com drenagem e liberação, pra quem passou o dia caminhando ou no esporte.</p>
               </div>
               <div>
                 <p className="rotulo">O mix de técnicas</p>
@@ -98,6 +99,37 @@ export default function Servicos() {
           </div>
         </section>
 
+
+      {/* EVENTOS */}
+      <section className="secao eventos">
+        <div className="wrap">
+          <div className="eventos-grid">
+            <div>
+              <p className="rotulo">Para eventos</p>
+              <h2 className="display">
+                Massagem no
+                <br />
+                seu evento
+              </h2>
+            </div>
+            <div className="eventos-texto">
+              <p>
+                Levamos a cadeira e montamos um espaço de quick massagem no seu evento. Além da quick, também fazemos massagem
+                nas pernas, com drenagem e liberação. Um momento de cuidado pra equipe, convidados, atletas ou hóspedes.
+              </p>
+              <ul className="eventos-lista">
+                <li>Empresas e eventos corporativos</li>
+                <li>Casamentos e festas</li>
+                <li>Eventos esportivos</li>
+                <li>Pousadas e hotéis</li>
+              </ul>
+              <a className="btn btn-escuro" href={waEventos} target="_blank" rel="noreferrer">
+                Falar sobre um evento
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
 
       <section className="contato contato-curto">
         <div className="wrap">
