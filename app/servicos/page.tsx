@@ -3,7 +3,7 @@ import { Video } from "@/components/Galeria";
 
 export const metadata: Metadata = {
   title: "Quick Massagem & Recovery · Pedro Siqueira & Marcela · Jeri, CE",
-  description: "Quick massagem na cadeira, recovery e massagem de panturrilhas e pés. Sessões de 15, 20 ou 30 minutos.",
+  description: "Quick massagem na cadeira, recovery e massagem nas pernas com drenagem e liberação. Sessões de 15, 20 ou 30 minutos. Também levamos a massagem pro seu evento.",
 };
 
 const WHATSAPP = (process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "5551980602183").replace(/\D/g, "");
