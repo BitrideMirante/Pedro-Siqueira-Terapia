@@ -1033,3 +1033,74 @@ video {
     aspect-ratio: 4 / 5;
   }
 }
+
+/* ---------- vídeos na página inicial ---------- */
+.secao-videos {
+  border-top: 0;
+  padding-top: 0;
+}
+.videos-dupla {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.videos-texto {
+  grid-column: span 2;
+  margin-bottom: 14px;
+}
+.videos-texto h2 {
+  font-size: clamp(36px, 9vw, 64px);
+  margin-bottom: 22px;
+}
+.videos-dupla .servicos-video {
+  aspect-ratio: 9 / 16;
+}
+@media (min-width: 900px) {
+  .videos-dupla {
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 16px;
+    align-items: end;
+  }
+  .videos-texto {
+    grid-column: auto;
+    margin: 0 0 8px;
+    padding-right: 24px;
+  }
+}
+
+/* ---------- página de serviços ---------- */
+.voltar {
+  padding-top: 28px;
+  font-size: 14px;
+  font-weight: 600;
+}
+.voltar a {
+  color: var(--muted);
+}
+.voltar a:hover {
+  color: var(--ink);
+}
+.secao-servicos {
+  border-top: 0;
+  padding-top: clamp(28px, 5vw, 56px);
+}
+.link-sublinhado {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.contato-curto h2 {
+  font-size: clamp(56px, 12vw, 120px);
+}
+.contato-curto .lead {
+  margin-bottom: 28px;
+}
+@media (max-width: 899px) {
+  .secao-servicos .servicos-videos {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .secao-servicos .servicos-video {
+    aspect-ratio: 9 / 16;
+  }
+}

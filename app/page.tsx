@@ -1,5 +1,5 @@
 import { lerStatus } from "@/lib/kv";
-import { Galeria, Video } from "@/components/Galeria";
+import { Video } from "@/components/Galeria";
 import { BarraAcao } from "@/components/BarraAcao";
 
 export const dynamic = "force-dynamic"; // sempre busca o status mais recente
@@ -8,12 +8,6 @@ const WHATSAPP = (process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "5551980602183").re
 const INSTAGRAM_LINK = process.env.NEXT_PUBLIC_INSTAGRAM_LINK || "https://www.instagram.com/pedrosiqueiraterapeuta/";
 const TIKTOK_ATIVO = process.env.NEXT_PUBLIC_TIKTOK_ATIVO === "true";
 const TIKTOK_LINK_2 = process.env.NEXT_PUBLIC_TIKTOK_LINK_2 || "https://www.tiktok.com/@quickmassage.viladejeri";
-
-const DURACOES = [
-  { min: "15", desc: "Pausa rápida" },
-  { min: "20", desc: "Alívio rápido" },
-  { min: "30", desc: "Completa" },
-];
 
 // Quem atende. Pra trocar a foto, é só mudar o caminho em "foto".
 const EQUIPE = [
@@ -51,6 +45,15 @@ export default async function Home() {
       rotulo: "WhatsApp",
       titulo: "Agendar atendimento",
       desc: "Combine o horário e o local que ficam bons pra você.",
+    },
+    {
+      href: "/servicos",
+      externo: false,
+      foto: "/galeria/atendimento-foto-1.jpg",
+      posicao: "72% 50%",
+      rotulo: "O que a gente faz",
+      titulo: "Quick massagem & recovery",
+      desc: "Durações, técnicas e como funciona.",
     },
     {
       href: "#hoje",
@@ -128,95 +131,6 @@ export default async function Home() {
           </div>
         </section>
 
-        {/* ATENDIMENTOS · o trabalho em foto e vídeo */}
-        <section className="secao">
-          <div className="wrap">
-            <div className="secao-topo">
-              <div>
-                <p className="rotulo">Atendimentos</p>
-                <h2 className="display">O trabalho</h2>
-              </div>
-              <p>Jeri, Rolante e no consultório Alba.</p>
-            </div>
-            <Galeria />
-          </div>
-        </section>
-
-        {/* SERVIÇO */}
-        <section className="secao">
-          <div className="wrap">
-            <div className="secao-topo">
-              <div>
-                <p className="rotulo">O que a gente faz</p>
-                <h2 className="display">
-                  Quick massagem
-                  <br />
-                  <span className="amp">&amp;</span> recovery
-                </h2>
-              </div>
-            </div>
-
-            <div className="duracoes">
-              {DURACOES.map((d) => (
-                <div key={d.min}>
-                  <div className="num">
-                    {d.min}
-                    <small>min</small>
-                  </div>
-                  <div className="desc">{d.desc}</div>
-                </div>
-              ))}
-            </div>
-
-            <div className="servicos-bloco">
-            {/* vídeos dos atendimentos: Marcela sempre primeiro. No celular só o dela (o do Pedro já está no topo). */}
-            <div className="servicos-videos">
-              <div className="servicos-video">
-                <Video src="/galeria/marcela-areia-de-cima.mp4" poster="/galeria/poster-marcela-areia.jpg" legenda="Marcela atendendo na areia, vista de cima" />
-              </div>
-              <div className="servicos-video so-computador">
-                <Video src="/galeria/pedro-praca-noite.mp4" poster="/galeria/poster-pedro-praca-noite.jpg" legenda="Pedro atendendo na praça da vila, à noite" />
-              </div>
-            </div>
-            <div className="servicos">
-              <div>
-                <p className="rotulo">Quick Massagem · a cadeira</p>
-                <p>A cadeira de massagem que levamos até você: leve, prática e pronta pra atender ao ar livre.</p>
-              </div>
-              <div>
-                <p className="rotulo">Recovery · a técnica</p>
-                <p>
-                  Misturo várias terapias numa sessão só, de acordo com o que o seu corpo está pedindo naquele dia. Na Quick,
-                  a massagem é objetiva: vai direto no que precisa de alívio, pra recuperar o corpo de atletas e de quem
-                  está cansado.
-                </p>
-              </div>
-              <div>
-                <p className="rotulo">Panturrilhas e pés · com a Marcela</p>
-                <p>Massagem nas panturrilhas e nos pés, pra quem passou o dia caminhando ou no esporte.</p>
-              </div>
-              <div>
-                <p className="rotulo">O mix de técnicas</p>
-                <p>Shiatsu, liberação miofascial, técnicas de quiropraxia, movimentos de Thai massagem e alinhamento Seitai.</p>
-              </div>
-            </div>
-            </div>
-
-            <div className="como">
-              <div>
-                <p className="rotulo">Espontâneo</p>
-                <h4>Encontrou por aqui</h4>
-                <p>Veja no topo do site onde estamos atendendo hoje e apareça.</p>
-              </div>
-              <div>
-                <p className="rotulo">Combinado</p>
-                <h4>Prefere garantir horário</h4>
-                <p>Chame no WhatsApp e a gente combina.</p>
-              </div>
-            </div>
-          </div>
-        </section>
-
         {/* QUEM ATENDE */}
         <section className="secao">
           <div className="wrap">
@@ -252,6 +166,27 @@ export default async function Home() {
           </div>
         </section>
 
+        {/* VÍDEOS NOVOS · Marcela sempre primeiro */}
+        <section className="secao secao-videos">
+          <div className="wrap">
+            <div className="videos-dupla">
+              <div className="videos-texto">
+                <p className="rotulo">Atendimentos</p>
+                <h2 className="display">Na areia e na praça</h2>
+                <a className="btn btn-escuro" href="/servicos">
+                  Conheça os serviços →
+                </a>
+              </div>
+              <div className="servicos-video">
+                <Video src="/galeria/marcela-areia-de-cima.mp4" poster="/galeria/poster-marcela-areia.jpg" legenda="Marcela atendendo na areia, vista de cima" />
+              </div>
+              <div className="servicos-video">
+                <Video src="/galeria/pedro-praca-noite.mp4" poster="/galeria/poster-pedro-praca-noite.jpg" legenda="Pedro atendendo na praça da vila, à noite" />
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* CONTATO */}
         <section className="contato" id="contato">
           <div className="wrap">
@@ -270,7 +205,7 @@ export default async function Home() {
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img src={l.foto} alt="" loading="lazy" style={{ objectPosition: l.posicao || "50% 50%" }} />
                     <span className="link-seta" aria-hidden>
-                      {l.externo ? "↗" : "↑"}
+                      {l.externo ? "↗" : l.href.startsWith("#") ? "↑" : "→"}
                     </span>
                   </div>
                   <div className="link-texto">
