@@ -87,7 +87,7 @@ export default function Servicos() {
               <div>
                 <p className="rotulo">Espontâneo</p>
                 <h4>Encontrou por aqui</h4>
-                <p>Veja na <a href="/#hoje" className="link-sublinhado">página inicial</a> onde estamos atendendo hoje e apareça.</p>
+                <p>Veja na <a href="/#contato" className="link-sublinhado">página inicial</a> onde estamos atendendo hoje e apareça.</p>
               </div>
               <div>
                 <p className="rotulo">Combinado</p>

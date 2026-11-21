@@ -7,6 +7,9 @@ export const dynamic = "force-dynamic"; // sempre busca o status mais recente
 const WHATSAPP = (process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "5551980602183").replace(/\D/g, "");
 const INSTAGRAM_LINK = process.env.NEXT_PUBLIC_INSTAGRAM_LINK || "https://www.instagram.com/pedrosiqueiraterapeuta/";
 const TIKTOK_ATIVO = process.env.NEXT_PUBLIC_TIKTOK_ATIVO === "true";
+// Link do nosso ponto no Google Maps. Quando existir, é só colar aqui
+// (ou criar NEXT_PUBLIC_MAPS_LINK na Vercel) que o "Onde estamos hoje" passa a abrir o mapa.
+const MAPS_LINK = process.env.NEXT_PUBLIC_MAPS_LINK || "";
 const TIKTOK_LINK_2 = process.env.NEXT_PUBLIC_TIKTOK_LINK_2 || "https://www.tiktok.com/@quickmassage.viladejeri";
 
 // Quem atende. Pra trocar a foto, é só mudar o caminho em "foto".
@@ -14,15 +17,15 @@ const EQUIPE = [
   {
     nome: "Pedro Siqueira",
     funcao: "Terapeuta manual",
-    foto: "/quem-atende/pedro-siqueira-noite.jpg",
-    posicao: "50% 50%",
+    foto: "/quem-atende/pedro-braco.jpg",
+    posicao: "57% 50%",
     texto: "Formação em terapia manual e chair massage. Quick massagem e recovery.",
   },
   {
     nome: "Marcela",
     funcao: "Fisioterapeuta",
-    foto: "/quem-atende/marcela.jpg",
-    posicao: "50% 0%",
+    foto: "/quem-atende/marcela-retrato.jpg",
+    posicao: "50% 35%",
     texto: "Quick massagem e massagem de panturrilhas e pés.",
   },
 ];
@@ -35,40 +38,43 @@ export default async function Home() {
   const local = status.local || "Local a confirmar";
 
   // Links com foto da seção final. Cada bloco inteiro é clicável.
-  type LinkFoto = { href: string; externo: boolean; foto: string; posicao?: string; rotulo: string; titulo: string; desc: string };
+  type LinkFoto = { href: string; externo: boolean; foto: string; video?: string; posicao?: string; rotulo: string; aoVivo?: boolean; paisagem?: boolean; titulo: string; desc: string };
   const links: LinkFoto[] = [
     {
       href: waUrl,
       externo: true,
-      foto: "/fotos/pedro-jeri.jpg",
-      posicao: "78% 40%",
+      foto: "/fotos/pedro-gesto.jpg",
+      posicao: "50% 46%",
+      paisagem: true,
       rotulo: "WhatsApp",
       titulo: "Agendar atendimento",
       desc: "Combine o horário e o local que ficam bons pra você.",
     },
     {
+      href: MAPS_LINK,
+      externo: true,
+      foto: "/fotos/pedro-jeri.jpg",
+      posicao: "60% 40%",
+      paisagem: true,
+      rotulo: ativo ? "Atendendo hoje" : "Hoje",
+      aoVivo: ativo,
+      titulo: "Onde estamos hoje",
+      desc: ativo ? `${local}${status.horario ? ` · ${status.horario}` : ""}` : "Sem ponto fixo. Combine pelo WhatsApp.",
+    },
+    {
       href: "/servicos",
       externo: false,
-      foto: "/galeria/atendimento-foto-1.jpg",
-      posicao: "72% 50%",
+      foto: "/galeria/poster-marcela-areia.jpg",
+      video: "/galeria/marcela-areia-de-cima.mp4",
       rotulo: "O que a gente faz",
       titulo: "Quick massagem & recovery",
       desc: "Durações, técnicas e como funciona.",
     },
     {
-      href: "#hoje",
-      externo: false,
-      foto: "/fotos/marcela-atendendo.jpg",
-      posicao: "50% 25%",
-      rotulo: ativo ? "Atendendo hoje" : "Hoje",
-      titulo: "Onde estamos hoje",
-      desc: ativo ? `${local}${status.horario ? ` · ${status.horario}` : ""}` : "Sem ponto fixo. Combine pelo WhatsApp.",
-    },
-    {
       href: INSTAGRAM_LINK,
       externo: true,
-      foto: "/fotos/pedro-ombro.jpg",
-      posicao: "12% 50%",
+      foto: "/fotos/marcela-atendendo.jpg",
+      posicao: "50% 6%",
       rotulo: "Instagram",
       titulo: "Bastidores",
       desc: "@pedrosiqueiraterapeuta",
@@ -104,24 +110,6 @@ export default async function Home() {
                 </a>
               </div>
 
-              <div className="hoje" id="hoje">
-                <div className={`topo ${ativo ? "ao-vivo" : "fora"}`}>
-                  <span className={`ponto ${ativo ? "ao-vivo" : ""}`} />
-                  {ativo ? "Atendendo hoje" : "Hoje sem ponto fixo"}
-                </div>
-                {ativo ? (
-                  <>
-                    <div className="local">{local}</div>
-                    {status.horario && <div className="horario">{status.horario}</div>}
-                    <div className="nota">Encontrou por aqui? Pode chegar. Prefere garantir horário? Chame no WhatsApp.</div>
-                  </>
-                ) : (
-                  <>
-                    <div className="local">Combine seu horário</div>
-                    <div className="nota">Chame no WhatsApp e a gente marca onde e quando fica bom pra você.</div>
-                  </>
-                )}
-              </div>
             </div>
 
             <div className="hero-foto">
@@ -133,55 +121,30 @@ export default async function Home() {
 
         {/* QUEM ATENDE */}
         <section className="secao">
-          <div className="wrap">
-            <div className="secao-topo">
-              <div>
-                <p className="rotulo">Quem atende</p>
-                <h2 className="display">Pedro <span className="amp">&amp;</span> Marcela</h2>
-              </div>
-              <p>
+          <div className="wrap casal">
+            <div className="casal-foto">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/quem-atende/pedro-e-marcela.jpg" alt="Pedro e Marcela, sorrindo, à noite em Jeri" loading="lazy" />
+            </div>
+
+            <div className="casal-texto">
+              <p className="rotulo">Quem atende</p>
+              <h2 className="display">
+                Pedro <span className="amp">&amp;</span> Marcela
+              </h2>
+              <p className="casal-intro">
                 Construímos nossa prática juntos no consultório Alba, em Rolante (RS). Em Jeri, levamos esse cuidado até a
                 praia: um atendimento completo, feito ao ar livre, com os pés na areia.
               </p>
-            </div>
 
-            <div className="pessoas">
-              {EQUIPE.map((p) => (
-                <div className="pessoa" key={p.nome}>
-                  <div className="pessoa-foto">
-                    {p.foto ? (
-                      // eslint-disable-next-line @next/next/no-img-element
-                      <img src={p.foto} alt={`${p.nome}, ${p.funcao.toLowerCase()}`} loading="lazy" style={{ objectPosition: p.posicao }} />
-                    ) : (
-                      <span className="pessoa-sem-foto">{p.nome[0]}</span>
-                    )}
+              <div className="casal-pessoas">
+                {EQUIPE.map((p) => (
+                  <div key={p.nome}>
+                    <p className="rotulo">{p.funcao}</p>
+                    <h3 className="pessoa-nome">{p.nome}</h3>
+                    <p className="pessoa-texto">{p.texto}</p>
                   </div>
-                  <p className="rotulo">{p.funcao}</p>
-                  <h3 className="pessoa-nome">{p.nome}</h3>
-                  <p className="pessoa-texto">{p.texto}</p>
-                </div>
-              ))}
-            </div>
-
-          </div>
-        </section>
-
-        {/* VÍDEOS NOVOS · Marcela sempre primeiro */}
-        <section className="secao secao-videos">
-          <div className="wrap">
-            <div className="videos-dupla">
-              <div className="videos-texto">
-                <p className="rotulo">Atendimentos</p>
-                <h2 className="display">Na areia e na praça</h2>
-                <a className="btn btn-escuro" href="/servicos">
-                  Conheça os serviços →
-                </a>
-              </div>
-              <div className="servicos-video">
-                <Video src="/galeria/marcela-areia-de-cima.mp4" poster="/galeria/poster-marcela-areia.jpg" legenda="Marcela atendendo na areia, vista de cima" />
-              </div>
-              <div className="servicos-video">
-                <Video src="/galeria/pedro-praca-noite.mp4" poster="/galeria/poster-pedro-praca-noite.jpg" legenda="Pedro atendendo na praça da vila, à noite" />
+                ))}
               </div>
             </div>
           </div>
@@ -194,27 +157,48 @@ export default async function Home() {
             <p className="lead">Chame no WhatsApp e combine seu atendimento.</p>
 
             <div className="links">
-              {links.map((l) => (
-                <a
-                  key={l.href + l.titulo}
-                  className="link"
-                  href={l.href}
-                  {...(l.externo ? { target: "_blank", rel: "noreferrer" } : {})}
-                >
-                  <div className="link-foto">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={l.foto} alt="" loading="lazy" style={{ objectPosition: l.posicao || "50% 50%" }} />
-                    <span className="link-seta" aria-hidden>
-                      {l.externo ? "↗" : l.href.startsWith("#") ? "↑" : "→"}
-                    </span>
+              {links.map((l) => {
+                const conteudo = (
+                  <>
+                    <div className="link-foto">
+                      {l.video ? (
+                        <Video src={l.video} poster={l.foto} legenda={l.titulo} />
+                      ) : (
+                        // eslint-disable-next-line @next/next/no-img-element
+                        <img src={l.foto} alt="" loading="lazy" style={{ objectPosition: l.posicao || "50% 50%" }} />
+                      )}
+                      {l.href && (
+                        <span className="link-seta" aria-hidden>
+                          {l.externo ? "↗" : "→"}
+                        </span>
+                      )}
+                    </div>
+                    <div className="link-texto">
+                      <span className="link-rotulo">
+                        {l.aoVivo && <span className="ponto ao-vivo" />}
+                        {l.rotulo}
+                      </span>
+                      <span className="link-titulo">{l.titulo}</span>
+                      <span className="link-desc">{l.desc}</span>
+                    </div>
+                  </>
+                );
+                // sem link (ex.: Maps ainda não existe) vira só um bloco, sem seta
+                return l.href ? (
+                  <a
+                    key={l.titulo}
+                    className={`link${l.paisagem ? " link-paisagem" : ""}`}
+                    href={l.href}
+                    {...(l.externo ? { target: "_blank", rel: "noreferrer" } : {})}
+                  >
+                    {conteudo}
+                  </a>
+                ) : (
+                  <div key={l.titulo} className={`link link-sem-acao${l.paisagem ? " link-paisagem" : ""}`} id="onde-estamos">
+                    {conteudo}
                   </div>
-                  <div className="link-texto">
-                    <span className="link-rotulo">{l.rotulo}</span>
-                    <span className="link-titulo">{l.titulo}</span>
-                    <span className="link-desc">{l.desc}</span>
-                  </div>
-                </a>
-              ))}
+                );
+              })}
             </div>
 
             <div className="assinatura">

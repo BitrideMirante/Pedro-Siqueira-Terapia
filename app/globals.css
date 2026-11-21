@@ -1104,3 +1104,129 @@ video {
     aspect-ratio: 9 / 16;
   }
 }
+
+/* links com foto: vídeo no lugar da foto, rótulo ao vivo, bloco sem link */
+.link-foto video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+.link:hover .link-foto video {
+  transform: scale(1.04);
+}
+.link-rotulo {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.link-rotulo .ponto {
+  width: 7px;
+  height: 7px;
+}
+.link-rotulo:has(.ponto) {
+  opacity: 1;
+  color: var(--live);
+}
+.link-sem-acao:hover .link-foto img {
+  transform: none;
+}
+
+/* computador: links com foto dois a dois, maiores */
+@media (min-width: 900px) {
+  .links,
+  .links:has(> .link:nth-child(4)) {
+    grid-template-columns: 1fr 1fr;
+    gap: 48px 24px;
+  }
+  .links .link .link-foto,
+  .links .link:first-child .link-foto,
+  .links .link:last-child:nth-child(even) .link-foto {
+    aspect-ratio: 4 / 5;
+  }
+  /* se sobrar um sozinho (TikTok ligado), ele ocupa a largura toda */
+  .links .link:last-child:nth-child(odd) {
+    grid-column: span 2;
+  }
+  .links .link:last-child:nth-child(odd) .link-foto {
+    aspect-ratio: 21 / 9;
+  }
+}
+
+/* computador: fotos deitadas (Pedro) em retângulo deitado, em pé (Marcela) em retângulo em pé */
+@media (min-width: 900px) {
+  .links .link.link-paisagem .link-foto {
+    aspect-ratio: 3 / 2;
+  }
+}
+
+/* celular: foto em pé que ocupa a largura toda (Marcela no Bastidores) fica em pé, sem cortar */
+@media (max-width: 899px) {
+  .links .link:last-child:nth-child(even):not(.link-paisagem) .link-foto {
+    aspect-ratio: 4 / 5;
+  }
+}
+
+/* ---------- quem atende: foto dos dois juntos ---------- */
+.casal {
+  display: grid;
+  gap: 28px;
+}
+.casal-foto {
+  border-radius: 6px;
+  overflow: hidden;
+  aspect-ratio: 4 / 5;
+  background: var(--bg-2);
+}
+.casal-foto img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 30%;
+}
+.casal-texto h2 {
+  font-size: clamp(40px, 7vw, 76px);
+  margin-bottom: 18px;
+}
+.casal-intro {
+  color: var(--muted);
+  margin: 0 0 32px;
+  max-width: 44ch;
+}
+.casal-pessoas {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  border-top: 1px solid var(--line);
+  padding-top: 24px;
+}
+/* celular: título → foto → nomes */
+@media (max-width: 899px) {
+  .casal {
+    gap: 0;
+  }
+  .casal-texto {
+    display: contents;
+  }
+  .casal-texto > * {
+    order: 0;
+  }
+  .casal-intro {
+    margin-bottom: 24px;
+  }
+  .casal-foto {
+    order: 1;
+  }
+  .casal-pessoas {
+    order: 2;
+    border-top: 0;
+    padding-top: 20px;
+  }
+}
+@media (min-width: 900px) {
+  .casal {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+    gap: 64px;
+    align-items: center;
+  }
+}
