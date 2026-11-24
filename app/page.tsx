@@ -205,6 +205,7 @@ export default async function Home() {
             <div className="assinatura">
               <span>Pedro Siqueira &amp; Marcela</span>
               <span>Quick Massagem &amp; Recovery</span>
+              <a href="/privacidade">Privacidade</a>
             </div>
           </div>
         </section>
