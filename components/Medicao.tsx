@@ -5,22 +5,22 @@ import { useEffect } from "react";
 
 // Medição do Google Ads.
 //
-// Só liga se as duas variáveis existirem. Sem elas, o componente não
-// renderiza nada e o site fica exatamente como era — nenhum script a mais,
-// nenhum cookie.
+// O site dispara um evento chamado "contato_whatsapp" sempre que alguém
+// clica num link de WhatsApp. Lá no Google Ads esse evento vira uma ação
+// de conversão (Metas > Conversões > Nova conversão > Site), sem precisar
+// colar rótulo nenhum aqui dentro.
 //
-// Onde pegar os valores: Google Ads > Metas > Conversões > ação "Contato"
-// > Configuração da tag. O ID é o AW-0000000000 e o rótulo é a string que
-// aparece depois da barra em send_to.
-const ID = process.env.NEXT_PUBLIC_GADS_ID || "";
-const ROTULO = process.env.NEXT_PUBLIC_GADS_LABEL || "";
+// ID da conta de anúncios. Não é segredo: fica visível no código da página
+// de qualquer site que anuncia. Dá pra sobrescrever pela Vercel se um dia
+// mudar de conta.
+const ID = process.env.NEXT_PUBLIC_GADS_ID || "AW-16735601874";
 
 export function Medicao() {
   // Um ouvinte só, na página inteira: qualquer link de WhatsApp conta como
   // contato. Assim não precisa marcar botão por botão, e link novo que
   // aparecer no futuro já entra sozinho.
   useEffect(() => {
-    if (!ID || !ROTULO) return;
+    if (!ID) return;
 
     const aoClicar = (evento: MouseEvent) => {
       const alvo = evento.target as HTMLElement | null;
@@ -30,7 +30,9 @@ export function Medicao() {
       const gtag = (window as unknown as { gtag?: (...args: unknown[]) => void }).gtag;
       if (typeof gtag !== "function") return;
 
-      gtag("event", "conversion", { send_to: `${ID}/${ROTULO}` });
+      gtag("event", "contato_whatsapp", {
+        origem: window.location.pathname,
+      });
     };
 
     // captura: dispara antes de o navegador seguir o link
