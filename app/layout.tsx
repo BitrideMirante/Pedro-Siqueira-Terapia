@@ -7,6 +7,11 @@ export const metadata: Metadata = {
   title: "Pedro Siqueira — Terapeuta Manual · Quick Massagem & Recovery · Jeri, CE",
   description:
     "Está por Jeri? Recupere o corpo depois da praia, do esporte ou da estrada. Atendimento na hora ou combinado antes.",
+  // Comprova pro Google que o site é nosso, pra poder pedir reindexação
+  // no Search Console. Não remover: a verificação cai junto.
+  verification: {
+    google: "216ImHWX-k5X0DgqJ2Zf3cCXQczaICM54TMLhfcyCuY",
+  },
 };
 
 export const viewport: Viewport = {
