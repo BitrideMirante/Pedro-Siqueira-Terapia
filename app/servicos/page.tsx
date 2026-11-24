@@ -141,6 +141,7 @@ export default function Servicos() {
           <div className="assinatura">
             <span>Pedro Siqueira &amp; Marcela</span>
             <span>Quick Massagem &amp; Recovery</span>
+            <a href="/privacidade">Privacidade</a>
           </div>
         </div>
       </section>
