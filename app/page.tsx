@@ -7,9 +7,9 @@ export const dynamic = "force-dynamic"; // sempre busca o status mais recente
 const WHATSAPP = (process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "5551980602183").replace(/\D/g, "");
 const INSTAGRAM_LINK = process.env.NEXT_PUBLIC_INSTAGRAM_LINK || "https://www.instagram.com/pedrosiqueiraterapeuta/";
 const TIKTOK_ATIVO = process.env.NEXT_PUBLIC_TIKTOK_ATIVO === "true";
-// Link do nosso ponto no Google Maps. Quando existir, é só colar aqui
-// (ou criar NEXT_PUBLIC_MAPS_LINK na Vercel) que o "Onde estamos hoje" passa a abrir o mapa.
-const MAPS_LINK = process.env.NEXT_PUBLIC_MAPS_LINK || "";
+// Nosso ponto no Google Maps. Dá pra sobrescrever pela Vercel se um dia mudar.
+// Todo clique aqui também conta como sinal de relevância pro perfil no Google.
+const MAPS_LINK = process.env.NEXT_PUBLIC_MAPS_LINK || "https://maps.google.com/?cid=14033400141301208062";
 const TIKTOK_LINK_2 = process.env.NEXT_PUBLIC_TIKTOK_LINK_2 || "https://www.tiktok.com/@quickmassage.viladejeri";
 
 // Quem atende. Pra trocar a foto, é só mudar o caminho em "foto".
