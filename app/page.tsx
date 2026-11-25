@@ -179,7 +179,14 @@ export default async function Home() {
                         {l.aoVivo && <span className="ponto ao-vivo" />}
                         {l.rotulo}
                       </span>
-                      <span className="link-titulo">{l.titulo}</span>
+                      <span className="link-titulo">
+                        {l.titulo.split("&").map((parte, i) => (
+                          <span key={i}>
+                            {i > 0 && <span className="amp">&amp;</span>}
+                            {parte}
+                          </span>
+                        ))}
+                      </span>
                       <span className="link-desc">{l.desc}</span>
                     </div>
                   </>
